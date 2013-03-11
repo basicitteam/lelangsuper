@@ -8,7 +8,7 @@
   <div class="row">
     <div class="span9">
       <?php echo $this->pagination->create_links(); ?>
-      <table class="table">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>No.</th>
@@ -47,19 +47,14 @@
             ?></td>
             <td>
             <?php
-            if($user['status'] == 0){
-            ?>
-            <button class="btn btn-warning">Belum Aktivasi</button>
-            <?php
-            }
-            elseif($user['status'] == 1){
-              ?>
-            <button class="btn btn-success">Aktif</button>
-              <?php
-            }
-            elseif($user['status'] == 2){
+            if(is_banned($user['id_user'])){
             ?>
             <button class="btn btn-danger">Banned</button>
+            <?php
+            }
+            else{
+            ?>
+            <button class="btn btn-success">Aktif</button>
             <?php
             }
             ?>

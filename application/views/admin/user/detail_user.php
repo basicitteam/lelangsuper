@@ -7,7 +7,7 @@
           </div>
           <div class="row">
             <div class="span5">
-              <table class="table">
+              <table class="table table-striped">
                 <tr>
                   <td>Nama User</td>
                   <td><?php echo $user['nama_user']; ?></td>
@@ -67,15 +67,27 @@
               </table>
             </div>
             <div class="span4">
-              <p class="center">Informasi Status User</p>
-              <table class="table">
+              <p class="center alert alert-info">Informasi Status User</p>
+              <table class="table table-striped">
                 <tr>
                   <td>Status</td>
-                  <td><?php echo $user['status']; ?></td>
+                  <td><?php
+                    if(is_banned($user['id_user'])){
+                    ?>
+                    <button class="btn btn-danger">Banned</button>
+                    <?php
+                    }
+                    else{
+                    ?>
+                    <button class="btn btn-success">Aktif</button>
+                    <?php
+                    }
+                    ?>
+                  </td>
                 </tr>
                 <tr>
                   <td>Waktu Banned</td>
-                  <td>Mulai <?php echo $user['tanggal_awal'].' - '.$user['tanggal_akhir']; ?> </td>
+                  <td>Mulai <?php echo date('G:i:s j M Y',$user['tanggal_awal']).'<br/>Hingga '.date('G:i:s j M Y',$user['tanggal_akhir']); ?> </td>
                 </tr>
                 <tr>
                   <td>Keterangan Banned</td>
@@ -85,9 +97,8 @@
                   <td>Di Banned Oleh : </td>
                   <td><?php echo $user['id_admin']; ?></td>
                 </tr>
-                <tr>
-                  <td><a href="<?php echo site_url('admin/user/banned/'.$user['id_user']); ?>" class="btn btn-danger btn-large">Banned User</a></td>
-                  <td><a href="<?php echo site_url('admin/user/'); ?>" class="btn btn-primary btn-large">Back</a></td>
+                <tr class="alert alert-warning">
+                  <td colspan="2"><a href="<?php echo site_url('admin/user/banned/'.$user['id_user']); ?>" class="btn btn-danger">Banned User</a> <a href="<?php echo site_url('admin/user/'); ?>" class="btn btn-primary">Back</a></td>
                 </tr>
               </table>
             </div>

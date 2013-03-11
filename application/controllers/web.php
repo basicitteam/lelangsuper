@@ -62,6 +62,7 @@ Class web extends CI_Controller{
 			'tempat_lahir' => $this->input->post('tempatlahir')
 			);
 			$this->M_user->insert($data);
+			$this->email($this->db->insert_id(),$data['email']);
 			$this->session->set_flashdata('msg','<p class="alert alert-success">Pendaftaran Berhasil! Silahkan cek email untuk konfirmasi!</p>');
 			redirect('web');
 		}
@@ -72,18 +73,25 @@ Class web extends CI_Controller{
 		}
 	}
 
-	public function email(){
+	public function email($id,$email){
 		$this->load->library('email');
 
-		$this->email->from('basicteam.afe@gmail.com', 'Basic IT Team');
-		$this->email->to('setiady.rogers28@gmail.com');
+		$this->email->from('lelangsuper@gmail.com', 'lelangsuper.com');
+		$this->email->to($email);
 
-		$this->email->subject('Email Test');
-		$this->email->message('Testing the email class.');	
+		$this->email->subject('Aktivasi Member lelangsuper.com');
+		$this->email->message('Link Aktivasi : '.site_url('web/activation/'.$id));	
 
-		$this->email->send();
+		return $this->email->send();
+	}
 
-		echo $this->email->print_debugger();
+	public function activation($id){
+		$data = array(
+			'status' => 1,
+			);
+		$this->M_user->update($id,$data);
+		$this->session->set_flashdata('msg','<p class="alert alert-success">Aktivasi Berhasil! Silahkan Login!</p>');
+		redirect('web');
 	}
 
 	public function login(){

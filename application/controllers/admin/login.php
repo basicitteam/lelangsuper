@@ -23,10 +23,8 @@ Class login extends CI_Controller{
 		}
 		else
 		{
-			echo 'Username/Password Salah!';
+			$this->session->set_flashdata('msg','<p class="alert alert-danger">Username/Password Salah!</p>');
+			redirect('admin/login');
 		}
-	}
-	public function logout(){
-		$this->session->sess_destroy();
 	}
 }

@@ -15,6 +15,7 @@
 </style>
       <form class="form-signin" method="POST" action="<?php echo site_url('admin/login/proses'); ?>">
         <h3 class="form-signin-heading">Login Administrator</h3>
+        <?php echo $this->session->flashdata('msg'); ?>
         <input type="text" class="input-block-level" placeholder="Username" name="username">
         <input type="password" class="input-block-level" placeholder="Password" name="password">
         <button class="btn btn-large btn-primary" type="submit">Login</button>

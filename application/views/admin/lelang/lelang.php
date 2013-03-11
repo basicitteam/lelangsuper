@@ -1,15 +1,20 @@
 <div class="span9">
   <div class="row">
           <!--<div class="span9"> -->
-        <h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Manage Barang Lelang</h3>
-        <br></br>
-        <ul class="thumbnails " >
-          <li class="span9 " >
-  <a class="btn btn-warning" style="box-shadow: 0px -2px 7px #ccc;" href="<?php echo site_url('admin/lelang/add'); ?>">Tambah Barang Lelang</a>
-  <hr>
-  <?php echo $this->session->flashdata('msg'); ?>
-  <?php echo $this->pagination->create_links(); ?>
-  <table class="table" style="box-shadow: 0px -2px 7px #ccc;background-color:#fcf8e3;">
+  <div class="span9">
+  <p class="alert alert-warning center title">Manage Barang Lelang</p>
+</div>
+</div>
+<div class="row">
+          <!--<div class="span9"> -->
+  <div class="span9">
+    <a class="btn btn-warning pull-right" href="<?php echo site_url('admin/lelang/add'); ?>">Tambah Barang Lelang</a>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="span9">
+    <table class="table table-hover" style="box-shadow: 0px -2px 7px #ccc;background-color:#fcf8e3;">
     <thead>
     <tr>
       <th>No.</th>
@@ -39,8 +44,8 @@
     </tbody>
   </table>
   <?php echo $this->pagination->create_links(); ?>
-</ui>
-</ul>
-</div>
+  </div>
+  </div>
+
 </div>
 </div><!-- End Row Main Content -->

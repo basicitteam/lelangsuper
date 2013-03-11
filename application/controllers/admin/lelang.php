@@ -4,6 +4,7 @@ Class lelang extends CI_Controller{
    	{
         parent::__construct();
         if(is_admin() == false){
+        	$this->session->set_flashdata('msg','<p class="alert alert-danger">Anda Belum Login!</p>');
         	redirect('admin/login');
         }
    	}

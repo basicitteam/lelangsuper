@@ -49,5 +49,12 @@ function is_user()
 }
 
 function is_banned($id_user){
-	
+	$CI =& get_instance();
+	$user = $CI->M_user->get_user($id_user);
+	if(time() > $user['tanggal_akhir']){
+		return false;
+	}
+	else{
+		return true;
+	}
 }

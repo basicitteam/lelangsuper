@@ -27,4 +27,11 @@ Class M_menang_lelang extends CI_Model{
 		$query = $this->db->get_where('t_menang_lelang',array('konfirmasi' => 1),$limit,$offset);
 		return $query->result_array();
 	}
+
+	public function get_menang_lelang($id_menang){
+		$this->db->join('t_ikut_lelang','t_ikut_lelang.id_ikut_lelang = t_menang_lelang.id_ikut_lelang');
+		$this->db->join('t_lelang','t_lelang.id_lelang = t_ikut_lelang.id_lelang');
+		$query = $this->db->get_where('t_menang_lelang',array('id_menang_lelang' => $id_menang));
+		return $query->row_array();
+	}
 }

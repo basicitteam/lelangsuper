@@ -35,13 +35,12 @@ Class user extends CI_Controller
 
 	public function proses_banned(){
 		$data = array(
-			'tanggal_awal' => $this->input->post('tanggal_awal'),
-			'tanggal_akhir' => $this->input->post('tanggal_akhir'),
+			'tanggal_awal' => strtotime($this->input->post('tanggal_awal')),
+			'tanggal_akhir' => strtotime($this->input->post('tanggal_akhir')),
 			'keterangan' => $this->input->post('keterangan'),
 			'id_admin' => $this->session->userdata('id_admin')
 			);
-		echo '<pre>';
-		print_r($data);
-		echo '</pre>';
+		$this->M_user->update($this->input->post('id_user'),$data);
+		redirect('admin/user/view/'.$this->input->post('id_user'));
 	}
 }

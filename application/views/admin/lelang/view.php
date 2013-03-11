@@ -9,8 +9,7 @@
           <!--<div class="span9"> -->
         <h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Manage Barang Lelang</h3>
         <br></br>
-        <ul class="thumbnails "  >
-          <li class="span9 " style="box-shadow: 0px -2px 7px #ccc;background-color:#fcf8e3;">
+        <div class="span9">
 <form class="form-horizontal" method="POST" action="<?php echo site_url('admin/lelang/update'); ?>" enctype="multipart/form-data">
   <br>
   <legend> <center><strong>View Barang Lelang</strong></center> </legend>
@@ -82,7 +81,6 @@
   <a href="<?php echo site_url('admin/lelang'); ?>" class="btn btn-danger">Back</a>
 </div>
 </form>
-</ui>
-</ul>
+</div>
 </div>
 </div>

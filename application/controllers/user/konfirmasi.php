@@ -1,6 +1,15 @@
 <?php
 Class konfirmasi extends CI_Controller{
 	
+	public function __construct()
+   	{
+        parent::__construct();
+        if(is_user() == false){
+        	$this->session->set_flashdata('msg','<p class="alert alert-danger">Anda Belum Login!</p>');
+        	redirect('web');
+        }
+   	}
+
 	public function index()
 	{
 		$data['tagihan'] = $this->M_beli_paket->get_tagihan_user($this->session->userdata('id_user'));

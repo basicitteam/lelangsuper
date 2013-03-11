@@ -2,6 +2,12 @@
 Class lelang extends CI_Controller{
 
 	public function arsip_tawar($offset = 0){
+		//login check
+		if(is_user() == false){
+        	$this->session->set_flashdata('msg','<p class="alert alert-danger">Anda Belum Login!</p>');
+        	redirect('web');
+        }
+
 		$config['base_url'] = site_url('user/lelang/arsip_tawar');
 		$config['total_rows'] = $this->M_user->get_arsip_tawar_num_rows($this->session->userdata('id_user'));
 		$config['per_page'] = 5; 
@@ -17,6 +23,12 @@ Class lelang extends CI_Controller{
 	}
 
 	public function arsip_menang($offset = 0){
+		//login check
+		if(is_user() == false){
+        	$this->session->set_flashdata('msg','<p class="alert alert-danger">Anda Belum Login!</p>');
+        	redirect('web');
+        }
+
 		$config['base_url'] = site_url('user/lelang/arsip_menang');
 		$config['total_rows'] = $this->M_user->get_arsip_menang_num_rows($this->session->userdata('id_user'));
 		$config['per_page'] = 5; 
@@ -32,6 +44,12 @@ Class lelang extends CI_Controller{
 	}
 
 	public function konfirmasi_menang($id_menang){
+		//login check
+		if(is_user() == false){
+        	$this->session->set_flashdata('msg','<p class="alert alert-danger">Anda Belum Login!</p>');
+        	redirect('web');
+        }
+
 		$data['menang'] = $this->M_menang_lelang->get_menang_lelang($id_menang);
 		$this->load->view('templates/header');
 		$this->load->view('templates_user/sidebar_account');
@@ -40,6 +58,12 @@ Class lelang extends CI_Controller{
 	}
 
 	public function proses_konfirm_menang(){
+		//login check
+		if(is_user() == false){
+        	$this->session->set_flashdata('msg','<p class="alert alert-danger">Anda Belum Login!</p>');
+        	redirect('web');
+        }
+        
 		$this->form_validation->set_rules('ktp', 'KTP', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required');

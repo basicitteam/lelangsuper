@@ -1,6 +1,15 @@
 <?php
 Class user extends CI_Controller{
 	
+	public function __construct()
+   	{
+        parent::__construct();
+        if(is_user() == false){
+        	$this->session->set_flashdata('msg','<p class="alert alert-danger">Anda Belum Login!</p>');
+        	redirect('web');
+        }
+   	}
+   	
 	public function edit_profile(){
 		$data['user'] = $this->M_user->get_user($this->session->userdata('id_user'));
 		$this->load->view('templates/header');

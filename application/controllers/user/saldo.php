@@ -1,5 +1,14 @@
 <?php
 Class saldo extends CI_Controller{
+	public function __construct()
+   	{
+        parent::__construct();
+        if(is_user() == false){
+        	$this->session->set_flashdata('msg','<p class="alert alert-danger">Anda Belum Login!</p>');
+        	redirect('web');
+        }
+   	}
+   	
 	public function index(){
 		$data['user'] = $this->M_user->get_user($this->session->userdata('id_user'));
 		$data['level'] = $this->M_user->cek_level($this->session->userdata('id_user'));

@@ -9,8 +9,10 @@ Class app_beli_point extends CI_Controller{
 		$this->pagination->initialize($config); 
 
 		$data['tagihan'] = $this->M_beli_paket->get($config['per_page'],$offset);
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$data['menu'] = 'admin';
+		$data['nav'] = 'approve';
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/app_beli_point/app_beli_point',$data);
 		$this->load->view('templates/footer');
 	}

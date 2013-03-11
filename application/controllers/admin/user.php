@@ -11,24 +11,30 @@ Class user extends CI_Controller
 		$this->pagination->initialize($config); 
 
 		$data['users'] = $this->M_user->get($config['per_page'],$offset);
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$data['menu'] = 'admin';
+		$data['nav'] = 'users';
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/user/user',$data);
 		$this->load->view('templates/footer');
 	}
 
 	public function view($id_user){
 		$data['user'] = $this->M_user->get_user($id_user);
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$data['menu'] = 'admin';
+		$data['nav'] = 'users';
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/user/detail_user',$data);
 		$this->load->view('templates/footer');
 	}
 
 	public function banned($id_user){
 		$data['user'] = $this->M_user->get_user($id_user);
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$data['menu'] = 'admin';
+		$data['nav'] = 'users';
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/user/form_banned',$data);
 		$this->load->view('templates/footer');
 	}

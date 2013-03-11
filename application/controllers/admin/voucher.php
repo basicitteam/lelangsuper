@@ -2,8 +2,10 @@
 Class voucher extends CI_Controller{
 	public function index()
 	{
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$data['menu'] = 'admin';
+		$data['nav'] = 'voucher';
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/voucher/voucher');
 		$this->load->view('templates/footer');
 	}

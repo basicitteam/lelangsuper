@@ -104,7 +104,6 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </a>
-		 
 		      <!-- Everything you want hidden at 940px or less, place within here -->
 		      <div class="nav-collapse collapse">
 		        <ul class="nav">

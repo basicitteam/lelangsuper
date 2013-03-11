@@ -16,16 +16,19 @@ Class lelang extends CI_Controller{
 
 		$this->pagination->initialize($config); 
 		$head['menu'] = 'admin';
+		$data['nav'] = 'lelang';
 		$data['lelang'] = $this->M_lelang->get($config['per_page'],$offset);
 		$this->load->view('templates/header',$head);
-		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/lelang/lelang',$data);
 		$this->load->view('templates/footer');
 	}
 
 	public function add(){
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$data['menu'] = 'admin';
+		$data['nav'] = 'lelang';
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/lelang/add');
 		$this->load->view('templates/footer');	
 	}
@@ -78,17 +81,21 @@ Class lelang extends CI_Controller{
 	}
 
 	public function view($id){
+		$data['menu'] = 'admin';
+		$data['nav'] = 'lelang';
 		$data['lelang'] = $this->M_lelang->get_lelang($id);
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/lelang/view',$data);
 		$this->load->view('templates/footer');	
 	}
 
 	public function edit($id){
+		$data['menu'] = 'admin';
+		$data['nav'] = 'lelang';
 		$data['lelang'] = $this->M_lelang->get_lelang($id);
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/lelang/edit',$data);	
 		$this->load->view('templates/footer');	
 	}

@@ -10,8 +10,10 @@ Class point extends CI_Controller{
 	public function index()
 	{
 		$data['data_paket'] = $this->M_paketpoint->get_paket();
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$data['menu'] = 'admin';
+		$data['nav'] = 'paket';
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/paket/paket_point',$data);
 		$this->load->view('templates/footer');
 	}
@@ -20,8 +22,10 @@ Class point extends CI_Controller{
 	public function edit($id)
 	{							
 		$data['data_paket_point'] = $this->M_paketpoint->get($id);
-		$this->load->view('templates/header');
-		$this->load->view('admin/templates/navigation');
+		$data['menu'] = 'admin';
+		$data['nav'] = 'paket';
+		$this->load->view('templates/header',$data);
+		$this->load->view('admin/templates/navigation',$data);
 		$this->load->view('admin/paket/edit',$data);
 		$this->load->view('templates/footer');
 	}

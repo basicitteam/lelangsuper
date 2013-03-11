@@ -4,21 +4,9 @@
 				<div class="row">
 					<!--<div class="span9"> -->
 				<h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Voucher Lelang</h3>
-				<ul class="thumbnails " >
-				
-				  <li class="span9 " >
+				<div class="span9">
+					<br>
 						<table class="table table-striped" style="box-shadow: 0px -2px 7px #ccc;background-color:#fcf8e3;">
-						<hr>
-								<thead>
-								  <h4>
-								  <center>
-									<strong>
-										Isi Voucher
-									</strong>
-								  </center>
-								  </h4>
-								  <hr>
-								</thead>
 								<tbody>
 									<tr>
 										<td>
@@ -50,8 +38,7 @@
 								</tbody>
 						</table>
 						<a href="<?php echo site_url('user');?>" class="btn btn-warning" data-dismiss="modal">Gunakan Voucher</a>
-				  </li> 
-				</ul>
+				 </div>
 				</div>
 				</div>
 				<!--</div> End Row span9 Content Lelang Sedang Berlangsung-->

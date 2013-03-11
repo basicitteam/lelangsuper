@@ -5,6 +5,7 @@
 				<!--<div class="span9"> -->
 				<h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Konfirmasi Bayar</h3>
 				</div>
+				<br>
 				<div class="row">
 					<div class="span9">
 						<table class="table">

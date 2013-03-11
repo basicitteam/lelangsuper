@@ -1,9 +1,8 @@
 			<!-- Content Span9 -->
 			<div class="span9">
-			<?php echo $this->pagination->create_links(); ?>
 				<h3 class="btn btn-warning" style="width: 97%;margin-left: 0px;box-shadow: 0px -2px 7px #ccc;">Arsip Tawar</h3>
-				<hr>
 				<!-- Content review list -->
+				<br>
 				<ul class="media-list alert alert-warning" style="box-shadow: 0px -2px 7px #ccc;">
 					<?php
 					if($arsip_tawar != false){

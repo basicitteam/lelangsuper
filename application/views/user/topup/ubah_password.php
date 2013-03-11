@@ -4,8 +4,7 @@
 				<div class="row">
 					<!--<div class="span9"> -->
 				<h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Ubah Password</h3>				 
-				<ul class="thumbnails " >				
-				  <li class="span9 " >
+				<div class="span9">
 				  	<form action="<?php echo site_url('user/user/update_password'); ?>" method="POST">
 						<table class="table table-striped" style="box-shadow: 0px -2px 7px #ccc;background-color:#fcf8e3;">
 						<hr>
@@ -52,8 +51,7 @@
 						</table>
 						<button class="btn btn-warning" type="submit">Save</button>
 						</form>
-				  </li> 
-				</ul>
+				 </div>
 				</div>
 				</div>
 				<!--</div> End Row span9 Content Lelang Sedang Berlangsung-->

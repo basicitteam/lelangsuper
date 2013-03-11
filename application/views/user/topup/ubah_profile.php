@@ -5,9 +5,7 @@
 					<!--<div class="span9"> -->
 				<h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Ubah Profile</h3>
 				<?php $this->session->flashdata('msg'); ?>
-				<ul class="thumbnails " >
-					<hr>
-				  <li class="span9 alert aler-warning" style="width:91%;" >
+				<div class="span9">
 						<article>
 						<form class="form-horizontal" action="<?php echo site_url('user/user/update_profile'); ?>" method="POST" enctype="multipart/form-data">
 						<hr>
@@ -78,8 +76,7 @@
 						</fieldset>
 						</form>
 				</article>
-				  </li> 
-				</ul>
+				</div>
 				</div>
 				</div>
 				<!--</div> End Row span9 Content Lelang Sedang Berlangsung-->

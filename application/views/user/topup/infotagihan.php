@@ -3,7 +3,7 @@
 				<div class="row">
 					<!--<div class="span9"> -->
 				<h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Konfirmasi Pembayaran</h3>
-				<ul class="thumbnails " >
+				<ul class="thumbnails">
 					<hr>
 					<li class="span9 alert alert-warning " style="width: 91%;" >
 				

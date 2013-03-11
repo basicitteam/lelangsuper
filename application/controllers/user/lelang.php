@@ -89,7 +89,7 @@ Class lelang extends CI_Controller{
 
 				//get harganya & waktu sisa absen
 				$lelang = $this->M_lelang->get_lelang($id);
-				$response['time'] = $lelang['waktu_selesai'];
+				$response['time'] = $lelang['waktu_selesai'] - time();
 			}//end if lelang waktu selesai
 			else{
 				//lelang sedang berlangsung
@@ -110,7 +110,7 @@ Class lelang extends CI_Controller{
 							//get harganya dan siswa waktu periode
 							//get harganya & waktu sisa waktu periode
 							$lelang = $this->M_lelang->get_lelang($id);
-							$response['time'] = $periode['expired'];
+							$response['time'] = $periode['expired'] - time();
 						}//end if periode expired
 						else{
 							//periode sudah habis
@@ -126,7 +126,7 @@ Class lelang extends CI_Controller{
 
 								//get harganya & waktu sisa waktu periode
 								$lelang = $this->M_lelang->get_lelang($id);
-								$response['time'] = $periode['expired'];
+								$response['time'] = $periode['expired'] - time();
 
 								//cek apakah ada pemenang?
 								if($this->M_lelang->get_pemenang($id) != false){
@@ -165,7 +165,7 @@ Class lelang extends CI_Controller{
 
 								//get harganya & waktu sisa waktu periode
 								$lelang = $this->M_lelang->get_lelang($id);
-								$response['time'] = $expired;
+								$response['time'] = $expired - time();
 							}
 						}//end else periode expired
 					}//end if periode exist
@@ -190,7 +190,7 @@ Class lelang extends CI_Controller{
 
 						//get harganya & waktu sisa waktu periode
 						$lelang = $this->M_lelang->get_lelang($id);
-						$response['time'] = $periode['expired'];
+						$response['time'] = $periode['expired'] - time();
 					}//end else periode exist
 			}//end else lelang waktu selesai
 		$response['harga'] = $this->cart->format_number($lelang['harga_min']);

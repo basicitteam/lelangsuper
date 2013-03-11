@@ -67,11 +67,11 @@
             
             //set countdown
             $('div#countdownlelang').countdown({
-                    until: new Date(data.time * 1000),
+                    until: +data.time,
                     onTick: highlightLast5,
                     expiryText: 'Berakhir'
                 });
-            $('div#countdownlelang').countdown('option',{until: new Date(data.time * 1000), serverSync: serverTime});
+            $('div#countdownlelang').countdown('option',{until: +data.time, serverSync: serverTime});
             console.log(data);
 
             //list bidder
@@ -118,7 +118,7 @@
     //Jquery buat Countdown
     $('.countdown').each(function(){
         //console.log('Original : '+$(this).html());
-        $(this).countdown({until: new Date($(this).data('time') * 1000),expiryText: 'Berakhir', serverSync: serverTime});
+        $(this).countdown({until: +$(this).data('time'),expiryText: 'Berakhir', serverSync: serverTime});
         //console.log('Converted : '+new Date($(this).data('time') * 1000));
     });
     });

@@ -31,7 +31,7 @@
 							?>
 						  </a>
 						  <hr>
-						  <div class="countdown btn btn-warning" data-time="<?php echo $key['waktu_selesai']; ?>" style="width: 217px;"><?php echo date('H:i d M Y',$key['waktu_selesai']); ?></div>
+						  <div class="countdown btn btn-warning" data-time="<?php echo $key['waktu_selesai'] - time(); ?>" style="width: 217px;"><?php echo date('H:i d M Y',$key['waktu_selesai']); ?></div>
 						  <p style="text-align: justify;"><?php echo substr($key['deskripsi_lelang'], 0, 100); ?></p>
 					  </div>
 					</div>

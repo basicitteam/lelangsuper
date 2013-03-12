@@ -41,10 +41,10 @@ Class lelang extends CI_Controller{
 		$this->form_validation->set_rules('waktu_mulai', 'Mulai Lelang', 'required');
 		$this->form_validation->set_rules('waktu_selesai', 'Selesai Lelang', 'required');
 		$this->form_validation->set_rules('harga_pasar', 'Harga Pasar', 'required');
-		$this->form_validation->set_rules('harga_min', 'Harga Minimal', 'required');
 		$this->form_validation->set_rules('harga_max', 'Harga Maksimal', 'required');
 		$this->form_validation->set_rules('point_bid', 'Point Bidding', 'required');
 		$this->form_validation->set_rules('point_daftar', 'Point Daftar', 'required');
+		$this->form_validation->set_rules('kenaikan_harga', 'Kenaikan Harga', 'required');
 		$this->form_validation->set_error_delimiters('<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>', '</p>');
 
 		if($this->form_validation->run() != FALSE){
@@ -61,11 +61,12 @@ Class lelang extends CI_Controller{
 					'waktu_mulai' => strtotime($this->input->post('waktu_mulai')),
 					'waktu_selesai' => strtotime($this->input->post('waktu_selesai')),
 					'harga_pasar' => $this->input->post('harga_pasar'),
-					'harga_min' => $this->input->post('harga_min'),
+					'harga_min' => 0,
 					'harga_max' => $this->input->post('harga_max'),
 					'point_bid' => $this->input->post('point_bid'),
 					'point_daftar' => $this->input->post('point_daftar'),
-					'foto_lelang' => $foto['file_name']
+					'foto_lelang' => $foto['file_name'],
+					'kenaikan_harga' => $this->input->post('kenaikan_harga'),
 					);
 				$this->M_lelang->insert($data);
 				$this->session->set_flashdata('msg','<p class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Tambah Barang Lelang Berhasil!</p>');
@@ -107,7 +108,7 @@ Class lelang extends CI_Controller{
 		$this->form_validation->set_rules('waktu_mulai', 'Mulai Lelang', 'required');
 		$this->form_validation->set_rules('waktu_selesai', 'Selesai Lelang', 'required');
 		$this->form_validation->set_rules('harga_pasar', 'Harga Pasar', 'required');
-		$this->form_validation->set_rules('harga_min', 'Harga Minimal', 'required');
+		$this->form_validation->set_rules('kenaikan_harga', 'Kenaikan Harga', 'required');
 		$this->form_validation->set_rules('harga_max', 'Harga Maksimal', 'required');
 		$this->form_validation->set_rules('point_bid', 'Point Bidding', 'required');
 		$this->form_validation->set_rules('point_daftar', 'Point Daftar', 'required');
@@ -125,10 +126,10 @@ Class lelang extends CI_Controller{
 				'waktu_mulai' => strtotime($this->input->post('waktu_mulai')),
 				'waktu_selesai' => strtotime($this->input->post('waktu_selesai')),
 				'harga_pasar' => $this->input->post('harga_pasar'),
-				'harga_min' => $this->input->post('harga_min'),
 				'harga_max' => $this->input->post('harga_max'),
 				'point_bid' => $this->input->post('point_bid'),
 				'point_daftar' => $this->input->post('point_daftar'),
+				'kenaikan_harga' => $this->input->post('kenaikan_harga'),
 				);
 
 			if($this->upload->do_upload())

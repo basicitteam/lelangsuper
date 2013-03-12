@@ -46,9 +46,9 @@
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="point_min">Harga Min</label>
+    <label class="control-label" for="kenaikan_harga">Kenaikan Harga Tawar</label>
     <div class="controls">
-      <input type="text" id="point_min" placeholder="Harga Minimal" name="harga_min">
+      <input type="text" id="kenaikan_harga" placeholder="Kenaikan Harga Tawar" name="kenaikan_harga">
     </div>
   </div>
   <div class="control-group">

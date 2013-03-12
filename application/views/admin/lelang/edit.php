@@ -55,9 +55,9 @@
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="harga_min">Harga Min</label>
+    <label class="control-label" for="kenaikan_harga">Kenaikan Harga Tawar</label>
     <div class="controls">
-      <input type="text" id="point_min" name="harga_min" value="<?php echo $lelang['harga_min']; ?>">
+      <input type="text" id="kenaikan_harga" name="kenaikan_harga" value="<?php echo $lelang['kenaikan_harga']; ?>">
     </div>
   </div>
   <div class="control-group">

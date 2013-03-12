@@ -147,8 +147,7 @@ Class lelang extends CI_Controller{
 	}
 
 	public function delete($id){
-		$this->db->where('id_lelang', $id);
-		$this->db->delete('t_lelang');
+		$this->M_lelang->delete($id);
 		$this->session->set_flashdata('msg','<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>Delete Barang Lelang id : '.$id.' Berhasil!</p>');
 		redirect('admin/lelang');
 	}

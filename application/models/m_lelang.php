@@ -137,4 +137,9 @@ Class M_lelang extends CI_Model{
 		}
 	}
 
+	public function delete($id){
+		$this->db->where('id_lelang', $id);
+		$this->db->delete('t_lelang');
+	}
+
 }

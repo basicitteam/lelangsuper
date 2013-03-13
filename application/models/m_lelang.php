@@ -82,12 +82,12 @@ Class M_lelang extends CI_Model{
 		return $this->db->insert('t_periode_lelang',$data);
 	}
 
-	public function get_bidder($id_periode){
-		$this->db->order_by('waktu_bid','DESC');
-		$this->db->select('t_user.username, t_log_lelang.bid');
-		$this->db->join('t_ikut_lelang','t_ikut_lelang.id_ikut_lelang = t_log_lelang.id_ikut_lelang');
+	public function get_bidder($id_lelang){
+		$this->db->order_by('waktu_tawar','DESC');
+		$this->db->select('t_user.username, t_tawar.tawar');
+		$this->db->join('t_ikut_lelang','t_ikut_lelang.id_ikut_lelang = t_tawar.id_ikut_lelang');
 		$this->db->join('t_user','t_user.id_user = t_ikut_lelang.id_user');
-		$query = $this->db->get_where('t_log_lelang',array('id_periode_lelang' => $id_periode),15,0);
+		$query = $this->db->get_where('t_tawar',array('t_ikut_lelang.id_lelang' => $id_lelang),15,0);
 		return $query->result_array();
 	}
 
@@ -108,8 +108,8 @@ Class M_lelang extends CI_Model{
 		}
 	}
 
-	public function insert_log_lelang($data){
-		return $this->db->insert('t_log_lelang',$data);
+	public function insert_tawar($data){
+		return $this->db->insert('t_tawar',$data);
 	}
 
 	public function update_periode($data,$id_periode){
@@ -123,12 +123,11 @@ Class M_lelang extends CI_Model{
 	}
 
 	public function get_pemenang($id_lelang){
-		$this->db->order_by('t_log_lelang.bid','DESC');
+		$this->db->order_by('t_tawar.tawar','DESC');
 		$this->db->select('t_user.username, t_user.id_user');
-		$this->db->join('t_periode_lelang','t_periode_lelang.id_periode_lelang = t_log_lelang.id_periode_lelang');
-		$this->db->join('t_ikut_lelang','t_ikut_lelang.id_ikut_lelang = t_log_lelang.id_ikut_lelang');
+		$this->db->join('t_ikut_lelang','t_ikut_lelang.id_ikut_lelang = t_tawar.id_ikut_lelang');
 		$this->db->join('t_user','t_user.id_user = t_ikut_lelang.id_user');
-		$query = $this->db->get_where('t_log_lelang',array('t_periode_lelang.id_lelang' => $id_lelang));
+		$query = $this->db->get_where('t_tawar',array('t_ikut_lelang.id_lelang' => $id_lelang));
 		if($query->num_rows() > 0){
 			return $query->row_array();
 		}
@@ -140,6 +139,17 @@ Class M_lelang extends CI_Model{
 	public function delete($id){
 		$this->db->where('id_lelang', $id);
 		$this->db->delete('t_lelang');
+	}
+
+	public function get_jumlah_bid_user($id_ikut_lelang){
+		$query = $this->db->get_where('t_tawar',array('id_ikut_lelang' => $id_ikut_lelang));
+		return $query->num_rows();
+	}
+
+	public function get_ikut_lelang($id_lelang){
+		$this->db->order_by('waktu_daftar','DESC');
+		$query = $this->db->get_where('t_ikut_lelang',array('id_lelang' => $id_lelang));
+		return $query->result_array();
 	}
 
 }

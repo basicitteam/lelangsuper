@@ -66,6 +66,12 @@ color: red;
 		<!-- /Foto lelang -->
 		<!-- Info lelang -->
 		<div class="span4">
+			<!-- status lelang -->
+			<div class="row">
+				<div class="span4">
+					<p class="alert alert-info center" id="status-lelang"></p>
+				</div>
+			</div>
 			<!-- Hemat -->
 			<div class="row" id="hemat">
 				<div class="span4">

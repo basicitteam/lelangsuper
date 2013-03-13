@@ -74,10 +74,12 @@
             $('div#countdownlelang').countdown('option',{until: +data.time, serverSync: serverTime});
             console.log(data);
 
+            //status lelang
+            $('p#status-lelang').html(data.msg);
             //list bidder
             $('table#list-bidder tbody').html('');
             $.each(data.bidder,function(index,value){
-                $('table#list-bidder').append('<tr><td>'+value.username+'</td><td>Rp. '+value.bid+'</td></tr>');
+                $('table#list-bidder').append('<tr><td>'+value.username+'</td><td>Rp. '+value.tawar+'</td></tr>');
             });
 
             //harga lelang

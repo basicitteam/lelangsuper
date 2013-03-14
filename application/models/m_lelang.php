@@ -123,7 +123,7 @@ Class M_lelang extends CI_Model{
 	}
 
 	public function get_pemenang($id_lelang){
-		$this->db->order_by('t_tawar.tawar','DESC');
+		$this->db->order_by('t_tawar.waktu_tawar','DESC');
 		$this->db->select('t_user.username, t_user.id_user');
 		$this->db->join('t_ikut_lelang','t_ikut_lelang.id_ikut_lelang = t_tawar.id_ikut_lelang');
 		$this->db->join('t_user','t_user.id_user = t_ikut_lelang.id_user');
@@ -150,6 +150,28 @@ Class M_lelang extends CI_Model{
 		$this->db->order_by('waktu_daftar','DESC');
 		$query = $this->db->get_where('t_ikut_lelang',array('id_lelang' => $id_lelang));
 		return $query->result_array();
+	}
+
+	public function clean_lelang($id_lelang){
+		$this->db->where('t_ikut_lelang.id_lelang',$id_lelang);
+		$query = $this->db->get('t_ikut_lelang');
+		$ikut_lelang = $query->result_array();
+		foreach($ikut_lelang as $key) {
+			$this->delete_tawar($key['id_ikut_lelang']);
+			$this->delete_menang($key['id_ikut_lelang']);
+		}
+		$this->db->where('t_ikut_lelang.id_lelang',$id_lelang);
+		return $this->db->delete('t_ikut_lelang');
+	}
+
+	public function delete_tawar($id_ikut_lelang){
+		$this->db->where('id_ikut_lelang', $id_ikut_lelang);
+		return $this->db->delete('t_tawar');
+	}
+
+	public function delete_menang($id_ikut_lelang){
+		$this->db->where('id_ikut_lelang', $id_ikut_lelang);
+		return $this->db->delete('t_menang_lelang');
 	}
 
 }

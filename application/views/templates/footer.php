@@ -71,7 +71,7 @@
                     onTick: highlightLast5,
                     expiryText: 'Berakhir'
                 });
-            $('div#countdownlelang').countdown('option',{until: +data.time, serverSync: serverTime});
+            $('div#countdownlelang').countdown('option',{until: +data.time, /*serverSync: serverTime*/});
             console.log(data);
 
             //status lelang

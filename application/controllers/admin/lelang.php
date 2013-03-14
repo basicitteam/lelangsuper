@@ -46,6 +46,13 @@ Class lelang extends CI_Controller{
 		$this->form_validation->set_rules('point_daftar', 'Point Daftar', 'required');
 		$this->form_validation->set_rules('kenaikan_harga', 'Kenaikan Harga', 'required');
 		$this->form_validation->set_error_delimiters('<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>', '</p>');
+		
+		if($this->input->post('golden_periode')){
+			$golden_periode = strtotime($this->input->post('golden_periode'));
+		}
+		else{
+			$golden_periode = 0;	
+		}
 
 		if($this->form_validation->run() != FALSE){
 			$config['upload_path'] = './assets/uploads/lelang/';
@@ -67,6 +74,7 @@ Class lelang extends CI_Controller{
 					'point_daftar' => $this->input->post('point_daftar'),
 					'foto_lelang' => $foto['file_name'],
 					'kenaikan_harga' => $this->input->post('kenaikan_harga'),
+					'golden_periode' => $golden_periode
 					);
 				$this->M_lelang->insert($data);
 				$this->session->set_flashdata('msg','<p class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Tambah Barang Lelang Berhasil!</p>');
@@ -115,6 +123,13 @@ Class lelang extends CI_Controller{
 		$this->form_validation->set_rules('id_lelang', 'ID Lelang', 'required');
 		$this->form_validation->set_error_delimiters('<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>', '</p>');
 
+		if($this->input->post('golden_periode')){
+			$golden_periode = strtotime($this->input->post('golden_periode'));
+		}
+		else{
+			$golden_periode = 0;	
+		}
+
 		if($this->form_validation->run() != FALSE){
 			$config['upload_path'] = './assets/uploads/lelang/';
 			$config['allowed_types'] = 'gif|jpg|png';
@@ -130,6 +145,7 @@ Class lelang extends CI_Controller{
 				'point_bid' => $this->input->post('point_bid'),
 				'point_daftar' => $this->input->post('point_daftar'),
 				'kenaikan_harga' => $this->input->post('kenaikan_harga'),
+				'golden_periode' => $golden_periode
 				);
 
 			if($this->upload->do_upload())

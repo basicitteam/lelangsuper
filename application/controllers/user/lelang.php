@@ -106,7 +106,7 @@ Class lelang extends CI_Controller{
 				$absen = $this->M_lelang->get_absensi($id);
 				//format currency jadi di frontend tinggal tampilin aja
 				for ($i=0; $i < count($absen); $i++) { 
-					$absen[$i]['bid'] = $this->cart->format_number($absen[$i]['bid']);
+					$absen[$i]['tawar'] = $this->cart->format_number($absen[$i]['bid']);
 				}
 				$response['msg'] = 'Masa Absensi';
 				$response['bidder'] = $absen;
@@ -118,7 +118,7 @@ Class lelang extends CI_Controller{
 				if($lelang['golden_periode'] < time() && $lelang['golden_periode'] != 0){
 					//golden periode
 					//cek golden periode masih aktif atau ngga
-					if($lelang['golden_periode'] + 600 < time()){
+					if($lelang['golden_periode'] < time() + 600){
 						//golden periode masih aktif
 						$response['msg'] = 'Golden Periode';
 					}
@@ -143,14 +143,33 @@ Class lelang extends CI_Controller{
 									$this->M_menang_lelang->insert($menang);
 								}
 							}
+							$response['msg'] = 'Lelang Berakhir';
 						}
 						else{
 							//lelang dibatalkan
 							//kembalikan semua point user
-							//hapus dari database absen & tawar
+							//get bidder yg udah absen
+							$ikut_lelang = $this->M_lelang->get_ikut_lelang($id);
+							//foreach masing2 user
+							foreach ($ikut_lelang as $key) {
+								//echo 'id_user : '.$key['id_user'].' jumlah bid : '.$this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']).' Point habis : '.$lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']).'<br/>';
+								$point_terpakai = $lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']);
+								$saldo_user = $this->M_user->get_saldo($key['id_user']);
+								$update_saldo = array(
+									'saldo' => $saldo_user + $point_terpakai
+									);
+								$this->M_user->update_saldo($key['id_user'],$update_saldo);
+							}
+							//hapus dari database ikut lelang, tawar & menang
+							$this->M_lelang->clean_lelang($id);
+							//set harga lelang jadi 0 lagi
+							$update_harga = array(
+								'harga_min' => 0
+								);
+							$this->M_lelang->update($update_harga,$id);
+							$response['msg'] = 'Lelang Dibatalkan';
 						}
-						$response['msg'] = 'Lelang Berakhir';
-					}
+					}//end else golden periode ngga aktif
 					$response['time'] = $lelang['golden_periode'] + 600 - time();
 				}
 				else{
@@ -188,8 +207,20 @@ Class lelang extends CI_Controller{
 							//foreach masing2 user
 							foreach ($ikut_lelang as $key) {
 								//echo 'id_user : '.$key['id_user'].' jumlah bid : '.$this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']).' Point habis : '.$lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']).'<br/>';
+								$point_terpakai = $lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']);
+								$saldo_user = $this->M_user->get_saldo($key['id_user']);
+								$update_saldo = array(
+									'saldo' => $saldo_user + $point_terpakai
+									);
+								$this->M_user->update_saldo($key['id_user'],$update_saldo);
 							}
-							//hapus dari database absen & tawar
+							//hapus dari database ikut lelang, tawar & menang
+							$this->M_lelang->clean_lelang($id);
+							//set harga lelang jadi 0 lagi
+							$update_harga = array(
+								'harga_min' => 0
+								);
+							$this->M_lelang->update($update_harga,$id);
 							$response['msg'] = 'Lelang Dibatalkan';
 						}
 					}
@@ -210,6 +241,7 @@ Class lelang extends CI_Controller{
 		$response['hemat'] = $this->cart->format_number($lelang['harga_pasar'] - $lelang['harga_min']);
 		$response['pemenang'] = $this->M_lelang->get_pemenang($id);
 		echo json_encode($response);
+		//echo '<br>'.date('r',$lelang['golden_periode']) .'<'.date('r',time());
 	}
 
 	//ajax, response json
@@ -236,11 +268,12 @@ Class lelang extends CI_Controller{
 						$this->M_user->update_saldo($this->session->userdata('id_user'),$data);
 
 						//naikkan harga sesuai kenaikan harga per bid
-						if($lelang['harga_min'] < $harga_max['harga_max']){
+						if($lelang['harga_min'] < $lelang['harga_max']){
 							$harga_baru = $lelang['harga_min'] + $lelang['kenaikan_harga'];
 							$update_harga = array(
 								'harga_min' => $harga_baru
 								);
+							//echo $harga_baru;
 							$this->M_lelang->update($update_harga,$id);
 						}
 						else{
@@ -275,7 +308,7 @@ Class lelang extends CI_Controller{
 					if($lelang['golden_periode'] < time() && $lelang['golden_periode'] != 0){
 						//golden periode
 						//cek golden periode masih aktif atau ngga
-						if($lelang['golden_periode'] + 600 < time()){
+						if($lelang['golden_periode'] < time() + 600){
 							//golden periode masih aktif
 							$response['status'] = 'false';
 							$response['msg'] = 'Golden Periode';
@@ -314,7 +347,7 @@ Class lelang extends CI_Controller{
 								$this->M_user->update_saldo($this->session->userdata('id_user'),$data_saldo);
 
 								//naikkan harga sesuai kenaikan harga per bid
-								if($lelang['harga_min'] <= $harga_max['harga_max']){
+								if($lelang['harga_min'] <= $lelang['harga_max']){
 									$harga_baru = $lelang['harga_min'] + $lelang['kenaikan_harga'];
 									$update_harga = array(
 										'harga_min' => $harga_baru

@@ -69,6 +69,13 @@
       <input type="text" id="point_daftar" placeholder="Point Daftar" name="point_daftar">
     </div>
   </div>
+  <div class="control-group">
+    <label class="control-label" for="golden_periode">Golder Periode</label>
+    <div class="controls">
+      <input type="text" id="golden_periode" name="golden_periode" class="datetimepicker">
+      <span class="help-block">Biarkan kosong jika tidak ada Golden Periode.</span>
+    </div>
+  </div>
   <div class="form-actions" style="background-color:#fcf8e3;">
   <button type="submit" class="btn btn-warning">Save changes</button>
   <a href="<?php echo site_url('admin/lelang'); ?>" class="btn btn-danger">Cancel</a>

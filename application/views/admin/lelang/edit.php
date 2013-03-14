@@ -78,6 +78,13 @@
       <input type="text" id="point_daftar" name="point_daftar" value="<?php echo $lelang['point_daftar']; ?>">
     </div>
   </div>
+  <div class="control-group">
+    <label class="control-label" for="golden_periode">Golder Periode</label>
+    <div class="controls">
+      <input type="text" id="golden_periode" name="golden_periode" class="datetimepicker" value="<?php if($lelang['golden_periode'] != 0) { echo date('m/d/Y G:i',$lelang['golden_periode']); } ?>">
+      <span class="help-block">Biarkan kosong jika tidak ada Golden Periode.</span>
+    </div>
+  </div>
   <div class="form-actions"  style="background-color:#fcf8e3;">
   <button type="submit" class="btn btn-warning">Save changes</button>
   <a href="<?php echo site_url('admin/lelang'); ?>" class="btn btn-danger">Cancel</a>

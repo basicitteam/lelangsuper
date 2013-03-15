@@ -125,13 +125,14 @@ Class lelang extends CI_Controller{
 						foreach ($list_user as $key) {
 							$point_terpakai = $lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']);
 							$point_golden = round($point_terpakai * 30 / 100);
-							echo $key['id_user'].' '.$point_golden.'<br>';
+							//echo $key['id_user'].' '.$point_golden.'<br>';
 							//update point golden ke tabel ikut lelang
+							$this->M_lelang->update_point_golden($key['id_ikut_lelang'],$point_golden);
 						}
 					}
 
 					//cek golden periode masih aktif atau ngga
-					if($lelang['golden_periode'] < time() + 600){
+					if(time() < $lelang['golden_periode'] + 600){
 						//golden periode masih aktif
 						$response['msg'] = 'Golden Periode';
 					}
@@ -321,10 +322,45 @@ Class lelang extends CI_Controller{
 					if($lelang['golden_periode'] < time() && $lelang['golden_periode'] != 0){
 						//golden periode
 						//cek golden periode masih aktif atau ngga
-						if($lelang['golden_periode'] < time() + 600){
+						if(time() < $lelang['golden_periode'] + 600){
 							//golden periode masih aktif
-							$response['status'] = 'false';
-							$response['msg'] = 'Golden Periode';
+							//cek saldo point golden user
+							$ikut_lelang = $this->M_ikut_lelang->get_ikut_lelang($id,$this->session->userdata('id_user'));
+							$saldo_golden = $this->M_lelang->get_saldo_golden($ikut_lelang['id_ikut_lelang']);
+							if($saldo_golden < $lelang['point_bid']){
+								//saldo ngga cukup
+								$response['status'] = 'false';
+								$response['msg'] = 'Saldo Golden Tidak Cukup!';
+							}
+							else{
+								//saldo cukup
+								//kurangi saldo golden
+								$saldo = $saldo_golden - $lelang['point_bid'];
+								$this->M_lelang->update_point_golden($ikut_lelang['id_ikut_lelang'],$saldo);
+								//naikkan harga sesuai kenaikan harga per bid
+								if($lelang['harga_min'] <= $lelang['harga_max']){
+									$harga_baru = $lelang['harga_min'] + $lelang['kenaikan_harga'];
+									$update_harga = array(
+										'harga_min' => $harga_baru
+										);
+									$this->M_lelang->update($update_harga,$id);
+								}
+								else{
+									$harga_baru = $lelang['harga_min'];
+								}
+
+								//insert ke tabel tawar lelang
+								$ikut_lelang = $this->M_ikut_lelang->get_ikut_lelang($id,$this->session->userdata('id_user'));
+								$tawar = array(
+									'id_ikut_lelang' => $ikut_lelang['id_ikut_lelang'],
+									'tawar' => $harga_baru,
+									'waktu_tawar' => time(),
+									'golden_periode' => 1
+									);
+								$this->M_lelang->insert_tawar($tawar);
+								$response['status'] = 'true';
+								$response['msg'] = 'Tawar Berhasil di Golden Periode';
+							}
 						}
 						else{
 							//golden periode sudah ngga aktif, lelang selesai
@@ -352,7 +388,6 @@ Class lelang extends CI_Controller{
 							else{
 								//saldo cukup
 								//kurangi saldo user
-								//kurangi saldo user untuk daftar
 								$saldo = $saldo_user - $lelang['point_bid'];
 								$data_saldo = array(
 								'saldo' => $saldo,
@@ -410,5 +445,9 @@ Class lelang extends CI_Controller{
 	public function get_time(){
 		$now = new DateTime(); 
 		echo $now->format("M j, Y H:i:s O")."\n"; 
+	}
+
+	public function clean($id){
+		$this->M_lelang->clean_lelang($id);
 	}
 }

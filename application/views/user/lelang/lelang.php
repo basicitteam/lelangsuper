@@ -60,6 +60,7 @@ color: red;
             	<p>Point Absen : <?php echo $lelang['point_daftar']; ?></p>
             	<p>Kenaikan Harga Tawar : <?php echo $lelang['kenaikan_harga']; ?></p>
             	<p>Harga Maksimal : Rp. <?php echo $this->cart->format_number($lelang['harga_max']); ?></p>
+            	<p>Golden Periode : <?php echo date('d F Y H:i:s',$lelang['golden_periode']); ?></p>
             	</div>
             </div>
 		</div>

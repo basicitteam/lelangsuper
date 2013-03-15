@@ -142,7 +142,7 @@ Class M_lelang extends CI_Model{
 	}
 
 	public function get_jumlah_bid_user($id_ikut_lelang){
-		$query = $this->db->get_where('t_tawar',array('id_ikut_lelang' => $id_ikut_lelang));
+		$query = $this->db->get_where('t_tawar',array('id_ikut_lelang' => $id_ikut_lelang, 'golden_periode' => 0));
 		return $query->num_rows();
 	}
 
@@ -172,6 +172,19 @@ Class M_lelang extends CI_Model{
 	public function delete_menang($id_ikut_lelang){
 		$this->db->where('id_ikut_lelang', $id_ikut_lelang);
 		return $this->db->delete('t_menang_lelang');
+	}
+
+	//get user yang belum dapet point golden
+	public function get_user_point_gp_null($id_lelang){
+		$this->db->where('point_gp IS NULL');
+		$this->db->where('id_lelang',$id_lelang);
+		$query = $this->db->get('t_ikut_lelang');
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}
+		else{
+			return false;
+		}
 	}
 
 }

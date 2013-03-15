@@ -117,6 +117,19 @@ Class lelang extends CI_Controller{
 				//cek apakah golden periode atau bukan ?
 				if($lelang['golden_periode'] < time() && $lelang['golden_periode'] != 0){
 					//golden periode
+
+					//cek apakah user sudah dapat point golden periode
+					if($this->M_lelang->get_user_point_gp_null($id) != false){
+						$list_user = $this->M_lelang->get_user_point_gp_null($id);
+						//kasi masing2 user point golden periode
+						foreach ($list_user as $key) {
+							$point_terpakai = $lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']);
+							$point_golden = round($point_terpakai * 30 / 100);
+							echo $key['id_user'].' '.$point_golden.'<br>';
+							//update point golden ke tabel ikut lelang
+						}
+					}
+
 					//cek golden periode masih aktif atau ngga
 					if($lelang['golden_periode'] < time() + 600){
 						//golden periode masih aktif

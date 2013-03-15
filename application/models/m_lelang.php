@@ -187,4 +187,19 @@ Class M_lelang extends CI_Model{
 		}
 	}
 
+	public function update_point_golden($id_ikut_lelang,$point_gp){
+		$update_point = array(
+			'point_gp' => $point_gp,
+			);
+		$this->db->where('id_ikut_lelang', $id_ikut_lelang);
+		return $this->db->update('t_ikut_lelang', $update_point); 
+	}
+
+	public function get_saldo_golden($id_ikut_lelang){
+		$this->db->where('id_ikut_lelang',$id_ikut_lelang);
+		$query = $this->db->get('t_ikut_lelang');
+		$result = $query->row_array();
+		return $result['point_gp'];
+	}
+
 }

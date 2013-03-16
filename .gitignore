@@ -165,3 +165,5 @@ pip-log.txt
 #lelang
 #ignore folder assets/uploads/lelang
 assets/uploads/lelang
+#ignore config application
+application/config/config.php

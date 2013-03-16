@@ -302,6 +302,16 @@ Class lelang extends CI_Controller{
 							);
 						$this->M_ikut_lelang->insert($absen);
 
+						//insert ke tabel tawar lelang
+						$ikut_lelang = $this->M_ikut_lelang->get_ikut_lelang($id,$this->session->userdata('id_user'));
+						$tawar = array(
+							'id_ikut_lelang' => $ikut_lelang['id_ikut_lelang'],
+							'tawar' => $harga_baru,
+							'waktu_tawar' => time(),
+							'golden_periode' => 0
+							);
+						$this->M_lelang->insert_tawar($tawar);
+						
 						//sudah absen!
 						$response['status'] = 'true';
 						$response['msg'] = 'Absen Berhasil!';
@@ -406,9 +416,12 @@ Class lelang extends CI_Controller{
 									$harga_baru = $lelang['harga_min'];
 								}
 
-								//update waktu lelang + 6s
-								$update_waktu = $lelang['waktu_selesai'] + 6;
-								$this->M_lelang->update(array('waktu_selesai' => $update_waktu),$id);
+								//cek apakah lelang berakhir tinggal 9m 53d
+								if($lelang['waktu_selesai'] - 593 < time()){
+									//update waktu lelang + 6s
+									$update_waktu = $lelang['waktu_selesai'] + 6;
+									$this->M_lelang->update(array('waktu_selesai' => $update_waktu),$id);
+								}
 
 								//insert ke tabel tawar lelang
 								$ikut_lelang = $this->M_ikut_lelang->get_ikut_lelang($id,$this->session->userdata('id_user'));

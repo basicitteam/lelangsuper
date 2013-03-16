@@ -143,7 +143,7 @@ Class M_lelang extends CI_Model{
 
 	public function get_jumlah_bid_user($id_ikut_lelang){
 		$query = $this->db->get_where('t_tawar',array('id_ikut_lelang' => $id_ikut_lelang, 'golden_periode' => 0));
-		return $query->num_rows();
+		return $query->num_rows() - 1;
 	}
 
 	public function get_ikut_lelang($id_lelang){

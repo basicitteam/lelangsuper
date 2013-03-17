@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2013 at 11:51 PM
+-- Generation Time: Mar 18, 2013 at 06:37 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `t_ikut_lelang` (
   PRIMARY KEY (`id_ikut_lelang`),
   KEY `id_user` (`id_user`,`id_lelang`),
   KEY `id_lelang` (`id_lelang`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `t_ikut_lelang`
@@ -142,8 +142,10 @@ CREATE TABLE IF NOT EXISTS `t_ikut_lelang` (
 INSERT INTO `t_ikut_lelang` (`id_ikut_lelang`, `id_user`, `id_lelang`, `waktu_daftar`, `bid`, `point_gp`) VALUES
 (3, 2, 2, '2013-03-13 22:48:38', 20, NULL),
 (4, 3, 2, '2013-03-13 22:48:44', 30, NULL),
-(9, 2, 19, '2013-03-14 02:37:28', 20, NULL),
-(10, 3, 19, '2013-03-14 02:39:48', 40, NULL);
+(13, 2, 20, '2013-03-15 15:23:32', 260, 3),
+(14, 3, 20, '2013-03-15 15:23:39', 260, 9),
+(17, 3, 21, '2013-03-16 07:56:56', 10, 6),
+(18, 2, 21, '2013-03-16 07:57:08', 20, 3);
 
 -- --------------------------------------------------------
 
@@ -196,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `t_lelang` (
   PRIMARY KEY (`id_lelang`),
   KEY `id_admin` (`id_admin`),
   KEY `id_admin_2` (`id_admin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `t_lelang`
@@ -212,15 +214,14 @@ INSERT INTO `t_lelang` (`id_lelang`, `id_admin`, `nama_lelang`, `foto_lelang`, `
 (8, 1, 'Eagle Maxtor Basketball Shoes', 'eagle-2899-64623-1-product1.jpg', 'Maxtor merupakan sepatu basket dari Eagle memaksimalkan performansi dan nyaman digunakan. Bantalan midsole yang empuk membuat pemakainya melangkah dengan mantap saat melewati lawan dan melesat tinggi dengan ringan ke atas ring.\r\nMidsole terbuat dari bahan Phylon, sangat empuk dipakai dan kualitas unggulan.\r\nMaxtor seri terbaru sepatu Eagle dengan kualitas bahan terbaik di kelasnya. Midsole terbuat dari bahan Phylon, sangat empuk dipakai dan kualitas unggulan.\r\nSKU	EA713SH53WHQ\r\nTipe sepatu	Basket shoes\r\nWarna	        Navy/White', 1362627360, 1362628200, 286300, 2863, 108, 2, 15, NULL, 80, NULL),
 (9, 1, 'Kamera Spy Jam Kamera JK-21', '13885287_1983781_50b2fa097f2a21.jpg', 'Kamera Spy bentuk Jam Tangan Kamera Stylish Stainless ini merupakan jam tangan kamera dengan fungsi normal sebagai penunjuk waktu dengan model yang trendy. Kelebihannya, Jam Tangan Kamera ini sudah tertanam memory 4GB, yg dapat berfungsi untuk merekam video dengan durasi sampai 1 jam, dapat mengambil gambar/foto dan merekam suara. Untuk melihat hasil video,foto & suara, dengan cara menggunakan kabel usb yang telah disediakan dalam paket, kemudian hubungkan jam tangan kamera tersebut ke usb PC/Laptop. Tidak perlu install driver untuk OS Windows XP, 7, Vista (kecuali Windows 98). Jam Tangan Kamera ini sudah Water Resistant.\r\n\r\n\r\nSPESIFIKASI PRODUK\r\n- Video format : AVI\r\n- Video resolution : 640 X 480 px\r\n- Video frame rate : 30 FPS\r\n- Photo format : JPG\r\n- Photo resolution : 1280 x 960 px\r\n- Battery capacity : 180 mAh\r\n- Battery power : 60 Menit\r\n- Charging voltage : DC-5V\r\n- Interface type : Jack\r\n- Memori storage : 4 GB\r\n- Battery type : high-capacity li-thium polymer\r\n- Diameter : 42 mm\r\n- Ketebalan : 15 mm\r\n- Strap : Rantai', 1362627360, 1362631260, 550000, 5500, 3345, 12, 35, NULL, 70, NULL),
 (10, 1, 'Nike Suketo', 'nike-8902-13875-1-product1.jpg', 'Nike Suketo, sepatu kasual dari bahan kanvas yang trendi. Cocok untuk aktivitas harian. Look sporty and still look stylish.\r\nNike Suketo, sepatu kasual dari bahan kanvas warna navy. Detail padded collar di bagian ankle, sol karet.\r\nSKU	NI126SH68HOHID\r\nTipe sepatu	Sneakers & Skate\r\nWarna	Navy/White', 1363132080, 1363133100, 549000, 5490, 234, 12, 34, NULL, 10, NULL),
-(11, 1, 'Blackberry Amstrong 9320 White (TAM)', '9320-white.jpg', 'Network \r\nGSM 850 / 900 / 1800 / 1900 \r\n3G HSDPA \r\nDimension \r\n109 x 60 x 12.7 mm \r\nWeight \r\n103 g \r\nKeyboard \r\nQWERTY \r\nDisplay \r\nTFT, 65K colors - 320 x 240 pixels, 2.44 inches Touch-sensitive optical trackpad \r\nMemory \r\n512 MB ROM, 512 MB RAM \r\nmicroSD, up to 32GB \r\nConnectivity \r\nGPRS Class 10 (4+1/3+2 slots), 32 - 48 kbps \r\nEDGE Class 10, 236.8 kbps \r\n3G HSDPA, 7.2 Mbps; HSUPA, 5.76 Mbps \r\nWi-Fi 802.11b/g \r\nBluetooth v2.0 with A2DP \r\nMini USB \r\nCamera \r\n3.15 MP, 2048x1536 pixels, LED flash \r\nGeo-tagging, image stabilization \r\nOS \r\nBlackBerry OS 7.1 \r\nSensors \r\nAccelerometer, proximity, compass \r\nGPS \r\nYes, with A-GPS support \r\nBattery \r\nStandard battery, Li-Ion 1450 mAh \r\nStandby Up to 432 h \r\nTalk-Time Up to 7 h \r\nMusic Time Up to 30 h ', 1362627300, 1362628260, 2450000, 24500, 245, 17, 45, NULL, 50, NULL),
-(12, 1, 'Power Bank 20000mAh', 'power_bank_20000mAh_thumb_r1.jpg', 'Power Bank 20000mAh dilengkapi dengan 8 konektor. Baterai eksternal digunakan untuk iPhone, iPad, iPod, Samsung, Blackberry, Sony Ericsson, LG, Sony PSP, kamera, dan peralatan digital lainnya. Memiliki dua  port USB output, yaitu : DC5V/2.1A dan DC5V/1A.\r\n', 1362526200, 1362836880, 275000, 2750, 27, 2, 15, NULL, 40, NULL),
 (13, 1, 'Samsung Galaxy Tab 2 7.0 EXPRESSO P-3100', 'tab2_7inch1.jpg', 'Specification : \r\n2G Network GSM 850 / 900 / 1800 / 1900 3G Network HSDPA 900 / 1900 / 2100 Dimensions 193.7 x 122.4 x 10.5 mm Weight 344 g Type PLS LCD capacitive touchscreen, 16M colors Size 600 x 1024 pixels, 7.0 inches (~170 ppi pixel density) Multitouch Yes   - TouchWiz UX UI Alert types Vibration; MP3, WAV ringtones Loudspeaker Yes, with stereo speakers 3.5mm jack Yes Card slot microSD, up to 64 GB Internal 8/16/32 GB storage, 1GB RAM GPRS Yes EDGE Yes Speed HSDPA, 21 Mbps; HSUPA, 5.76 Mbps WLAN Wi-Fi 802.11 a/b/g/n, DLNA, Wi-Fi Direct, dual-band, Wi-Fi hotspot Bluetooth Yes, v3.0 with A2DP, HS Infrared port Yes USB Yes, microUSB v2.0, USB On-the-go support Primary 3.15 MP, 2048x1536 pixels Features Geo-tagging, smile detection Video Yes, 1080p@30fps Secondary Yes, VGA OS Android OS, v4.0.3 (Ice Cream Sandwich) Chipset TI OMAP 4430 CPU Dual-core 1 GHz GPU PowerVR SGX540 Sensors Accelerometer, gyro, proximity, compass Messaging SMS(threaded view), MMS, Email, Push Email, IM, RSS Browser HTML5, Adobe Flash Radio No GPS Yes, with A-GPS support and GLONASS Java Yes, via Java MIDP emulator Colors Black, White', 1362750480, 1362836880, 3380000, 33800, 548, 24, 65, NULL, 30, NULL),
 (14, 1, 'Kamera Nikon L810 Semi Pro 16 MP 26X Optical Zoom', '16563537_3876007_510f27aa17c9d1.jpg', '16 MEGA PIIXEL VIDEO HD MOVIE 26X OPTICAL ZOOM\r\nBISA HDMI LENSA UDAH ID VR\r\nMENGGUNAKAN BATRE A2 4 BUAH ALKALIN', 1362750480, 1362836880, 1850000, 18500, 185, 15, 34, NULL, 20, NULL),
 (16, 1, 'Sony 32-inch', 'sony-32_inch1.jpg', 'FEATURES\r\n\r\nWXGA\r\nLED Backlight\r\nBRAVIA Engine 3\r\nIntelligent Picture Plus\r\nDigital Noise Reduction\r\nMHL Enabled\r\n\r\nSPECIFICATION\r\nScreen Size 32"(80cm), 16:9\r\nTV System Analog: B/G, D/K, I, M\r\nColour System NTSC 3.58, NTSC 4.43, PAL, SECAM\r\nVideo Signal 480/60i, 480/60p, 576/50i, 576/50p, 720/50p, 720/60p, 1080/50i, 1080/60i, 1080/24p (HDMI only), 1080/50p (HDMI / Component), 1080/60p (HDMI / Component)\r\nPicture\r\nDisplay Resolution WXGA\r\nVideo Processing BRAVIA Engine 3 Technology\r\nMotionflow XR 100 Hz (for Philippine XR 120 Hz)\r\nBacklight Module LED Backlight\r\nLive Colour Yes\r\nMPEG Noise Reduction Yes\r\nAdvanced Contrast Enhancer (ACE) Yes\r\n24p True Cinema Yes\r\nViewing Angle 178 (Right/Left), 178 (Up/Down)\r\nScreen Format TV: Full/ Normal/ Wide Zoom/ Zoom\r\nPicture Mode Vivid / Standard / Custom/ Cinema / Photo / Sports / Game / Graphics\r\nCineMotion/Film Mode/Cinema Drive Yes\r\nAudio\r\nBass Booster Yes\r\nSound Mode Dynamic/ Standard/ Clear Voice\r\nSurround Mode Cinema/ Music/ Sports/ Game\r\nDolby Digital\r\nSimulated Stereo Yes\r\nStereo System NICAM/A2\r\nTerminals\r\nHDMI / Audio In 2 (2 Rear)\r\nUSB 2.0 1 (Side)\r\nComposite Video Input(s) 2 (1 Rear Hybrid w/Component)\r\nRF Connection Input(s) 1 (Rear)\r\nAnalog Audio Input(s) 1 (Rear Hybrid w/PC)\r\nAudio Out 1 (Rear / Hybrid w HP)\r\nHeadphone Out 1 (Rear/Hybrid w/Audio Out)\r\nOther Features\r\nUSB Play Yes (Video, Music, Photo) (USB viewer supports FAT16, FAT32 and exFAT file systems)\r\nPicture Frame Mode Yes\r\nGeneral\r\nPower Requirements AC 110-240V, 50/60Hz\r\nPower Consumption Approx. 55W\r\nStandby Power Consumption Approx. 0.50W\r\nDimensions (W x H x D) with Stand Approx. 737x477x167 mm\r\nDimensions (W x H x D) without Stand Approx. 737x459x61 mm\r\nWeight with Stand Approx. 4.7kg\r\nWeight without Stand Approx. 4.5kg', 1362750480, 1362836880, 3299000, 32990, 549, 18, 68, NULL, 10, NULL),
 (17, 1, '1Tes Nama Barang', 'Koala2.jpg', 'dasdasd', 1363065120, 1363065780, 150000000, 2750, 20, 10, 50, NULL, 10, NULL),
 (18, 1, '1Tes Nama Barang lagi', 'Koala3.jpg', 'asdasd', 1363065840, 1363065960, 150000000, 2750, 418, 14, 50, NULL, 19, NULL),
-(19, 1, 'Koala Gila', 'Koala4.jpg', 'asdasd', 1363227900, 1363229442, 1000000, 250, 100, 10, 50, NULL, 20, NULL),
-(20, 1, 'Koala Gila Lagi', 'Koala5.jpg', 'asdasd', 1363276620, 1363278400, 10000, 250, 0, 10, 50, NULL, 20, 1363278000);
+(19, 1, 'Koala Gila', 'Koala4.jpg', 'asdasd', 1363227900, 1363229442, 1000000, 250, 0, 10, 50, NULL, 20, NULL),
+(20, 1, 'Koala Gila Lagi', 'Koala5.jpg', 'asdasd', 1363416840, 1363417644, 10000, 250, 260, 10, 50, NULL, 20, 1363431240),
+(21, 1, 'pinguin', 'Penguins.jpg', 'Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.\n\nMaecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.The typographic scale is based on two LESS variables in variables.less: @baseFontSize and @baseLineHeight. The first is the base font-size used throughout and the second is the base line-height. We use those variables and some simple math to create the margins, paddings, and line-heights of all our type and more. Customize them and Bootstrap adapts.', 1363492260, 1363493100, 10000, 250, 260, 10, 50, NULL, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -266,6 +267,14 @@ CREATE TABLE IF NOT EXISTS `t_menang_lelang` (
   PRIMARY KEY (`id_menang_lelang`),
   KEY `id_ikut_lelang` (`id_ikut_lelang`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `t_menang_lelang`
+--
+
+INSERT INTO `t_menang_lelang` (`id_menang_lelang`, `id_ikut_lelang`, `testimoni`, `harga`, `konfirmasi`, `ktp`, `alamat`, `email`) VALUES
+(2, 13, NULL, 260, 0, NULL, NULL, NULL),
+(3, 18, NULL, 260, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -329,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `t_tawar` (
   `waktu_tawar` int(11) NOT NULL,
   `golden_periode` int(11) NOT NULL,
   PRIMARY KEY (`id_tawar`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=112 ;
 
 --
 -- Dumping data for table `t_tawar`
@@ -355,13 +364,63 @@ INSERT INTO `t_tawar` (`id_tawar`, `id_ikut_lelang`, `tawar`, `waktu_tawar`, `go
 (17, 3, 230, 1363215827, 0),
 (18, 4, 240, 1363215854, 0),
 (19, 3, 250, 1363215855, 0),
-(20, 9, 40, 1363228802, 0),
-(21, 9, 40, 1363228806, 0),
-(22, 10, 40, 1363228817, 0),
-(23, 9, 40, 1363228900, 0),
-(24, 9, 60, 1363228938, 0),
-(25, 9, 80, 1363228943, 0),
-(26, 10, 100, 1363228947, 0);
+(43, 13, 260, 1363361103, 0),
+(44, 13, 260, 1363361116, 0),
+(45, 13, 260, 1363361117, 0),
+(46, 13, 260, 1363361121, 0),
+(47, 14, 260, 1363361144, 0),
+(48, 13, 260, 1363361157, 0),
+(49, 14, 260, 1363361164, 0),
+(50, 13, 260, 1363361393, 0),
+(51, 13, 260, 1363361395, 0),
+(52, 13, 260, 1363361396, 0),
+(53, 13, 260, 1363361397, 0),
+(54, 13, 260, 1363361398, 0),
+(55, 14, 260, 1363361413, 0),
+(56, 13, 260, 1363361578, 0),
+(57, 13, 260, 1363361591, 1),
+(58, 13, 260, 1363361616, 1),
+(59, 13, 260, 1363361692, 1),
+(60, 13, 260, 1363417022, 0),
+(61, 13, 260, 1363417025, 0),
+(62, 13, 260, 1363417028, 0),
+(63, 13, 260, 1363417033, 0),
+(64, 13, 260, 1363417036, 0),
+(65, 13, 260, 1363417039, 0),
+(66, 13, 260, 1363417043, 0),
+(67, 13, 260, 1363417046, 0),
+(80, 17, 10, 1363420616, 0),
+(81, 18, 20, 1363420628, 0),
+(82, 18, 30, 1363421092, 0),
+(83, 17, 40, 1363421096, 0),
+(84, 18, 50, 1363421097, 0),
+(85, 17, 60, 1363421099, 0),
+(86, 18, 70, 1363421100, 0),
+(87, 17, 80, 1363421104, 0),
+(88, 18, 90, 1363421105, 0),
+(89, 17, 100, 1363421106, 0),
+(90, 18, 110, 1363421106, 0),
+(91, 17, 120, 1363421108, 0),
+(92, 18, 130, 1363421116, 0),
+(93, 18, 140, 1363421117, 0),
+(94, 18, 150, 1363421119, 0),
+(95, 17, 160, 1363421123, 0),
+(96, 17, 170, 1363421124, 0),
+(97, 17, 180, 1363421125, 0),
+(98, 17, 190, 1363421172, 0),
+(99, 17, 200, 1363421173, 0),
+(100, 17, 210, 1363421174, 0),
+(101, 17, 220, 1363421176, 0),
+(102, 18, 230, 1363421251, 0),
+(103, 18, 240, 1363421252, 0),
+(104, 18, 250, 1363421254, 0),
+(105, 17, 260, 1363421440, 1),
+(106, 18, 260, 1363421467, 1),
+(107, 17, 260, 1363421488, 1),
+(108, 17, 260, 1363421569, 1),
+(109, 18, 260, 1363421584, 1),
+(110, 18, 260, 1363421594, 1),
+(111, 18, 260, 1363421681, 1);
 
 -- --------------------------------------------------------
 
@@ -386,8 +445,8 @@ CREATE TABLE IF NOT EXISTS `t_user` (
   `kota` varchar(45) DEFAULT NULL,
   `provinsi` varchar(45) DEFAULT NULL,
   `status` int(1) NOT NULL,
-  `tanggal_awal` int(11) NOT NULL,
-  `tanggal_akhir` int(11) NOT NULL,
+  `tanggal_awal` int(11) DEFAULT NULL,
+  `tanggal_akhir` int(11) DEFAULT NULL,
   `keterangan` varchar(255) NOT NULL,
   `id_admin` int(11) DEFAULT NULL,
   `jns_kelamin` varchar(55) NOT NULL,
@@ -400,8 +459,8 @@ CREATE TABLE IF NOT EXISTS `t_user` (
 --
 
 INSERT INTO `t_user` (`id_user`, `nama_user`, `no_ktp`, `no_telp`, `tgl_lahir`, `saldo`, `tempat_lahir`, `alamat`, `kode_pos`, `email`, `username`, `password`, `tanggal_daftar`, `kota`, `provinsi`, `status`, `tanggal_awal`, `tanggal_akhir`, `keterangan`, `id_admin`, `jns_kelamin`) VALUES
-(2, 'Raden Rogers Dwiputra Setiady', '3204321309910004', '08989970289', '13 Sep 1991', 200, 'Bandung', 'Jl. R.A.A Wiranata Kusumah No. 5 Baleendah Kab. Bandung Jawa Barat Indonesia', NULL, 'setiady.rogers28@gmail.com', 'rogers_dwiputra', '7e78efd1807895e2d634ab3bbb6bc15e', '2013-02-25 15:32:41', NULL, NULL, 1, 1362985740, 1363158540, 'coba banned doang', 1, 'Pria'),
-(3, 'Aditya Surya', '6171052410910001', '088802350276', '24 Oct 1991', 200, 'Pontianak', 'jl. ciganitri tengah no.05', NULL, 'proto17em@gmail.com', 'proto', 'a8f5f167f44f4964e6c998dee827110c', '2013-02-28 06:56:11', NULL, NULL, 1, 0, 0, '', NULL, 'Pria'),
+(2, 'Raden Rogers Dwiputra Setiady', '3204321309910004', '08989970289', '13 Sep 1991', 290, 'Bandung', 'Jl. R.A.A Wiranata Kusumah No. 5 Baleendah Kab. Bandung Jawa Barat Indonesia', NULL, 'setiady.rogers28@gmail.com', 'rogers_dwiputra', '7e78efd1807895e2d634ab3bbb6bc15e', '2013-02-25 15:32:41', NULL, NULL, 1, 1362985740, 1363158540, 'coba banned doang', 1, 'Pria'),
+(3, 'Aditya Surya', '6171052410910001', '088802350276', '24 Oct 1991', 280, 'Pontianak', 'jl. ciganitri tengah no.05', NULL, 'proto17em@gmail.com', 'proto', 'a8f5f167f44f4964e6c998dee827110c', '2013-02-28 06:56:11', NULL, NULL, 1, 0, 0, '', NULL, 'Pria'),
 (5, 'jati', '8689698698809', '5679900', '07 Apr 1991', 300, 'rumah sakit', 'jl. surabaya', NULL, 'makobu_kenza@yahoo.co.id', 'makobu', '71a4d4cd2f30b185d707718273b17d05', '2013-03-06 05:21:20', NULL, NULL, 1, 0, 0, '', NULL, 'Pria');
 
 -- --------------------------------------------------------

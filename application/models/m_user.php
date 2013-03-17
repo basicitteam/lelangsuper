@@ -132,6 +132,7 @@ Class M_user extends CI_Model{
 	}
 
 	public function get($limit = 100,$offset = 0){
+		$this->db->select('t_user.*, t_ikut.jmlh_ikut, t_menang.jmlh_menang');
 		$this->db->join('(SELECT id_user, count(id_user) as jmlh_ikut FROM `t_ikut_lelang` group by id_user) as t_ikut','t_ikut.id_user = t_user.id_user','left');
 		$this->db->join('(SELECT id_user, count(id_user) as jmlh_menang FROM `t_menang_lelang` join t_ikut_lelang on t_ikut_lelang.id_ikut_lelang = t_menang_lelang.id_ikut_lelang group by id_user) as t_menang','t_menang.id_user = t_user.id_user','left');
 		$query = $this->db->get('t_user',$limit,$offset);
@@ -139,6 +140,7 @@ Class M_user extends CI_Model{
 	}
 
 	public function get_num_rows(){
+		$this->db->select('t_user.*, t_ikut.jmlh_ikut, t_menang.jmlh_menang');
 		$this->db->join('(SELECT id_user, count(id_user) as jmlh_ikut FROM `t_ikut_lelang` group by id_user) as t_ikut','t_ikut.id_user = t_user.id_user','left');
 		$this->db->join('(SELECT id_user, count(id_user) as jmlh_menang FROM `t_menang_lelang` join t_ikut_lelang on t_ikut_lelang.id_ikut_lelang = t_menang_lelang.id_ikut_lelang group by id_user) as t_menang','t_menang.id_user = t_user.id_user','left');
 		$query = $this->db->get('t_user');

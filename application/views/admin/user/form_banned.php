@@ -1,14 +1,18 @@
-<div class="span9">
-  <div class="row">
-    <div class="span9">
-          <!--<div class="span9"> -->
-        <h3 class="btn btn-warning" style="width: 94%;box-shadow: 0px -2px 7px #ccc;">Form Banned User</h3>
-      </div>
+<div class="row-fluid">
+<div class="span12">
+    <ul class="breadcrumb">
+      <li>Banned User</li>
+    </ul>
+</div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <?php echo $this->session->flashdata('msg'); ?>
   </div>
-  <br>
-  <div class="row">
-    <div class="span5">
-      <form action="<?php echo site_url('admin/user/proses_banned'); ?>" method="POST" class="form-horizontal">
+</div>
+<div class="row-fluid">
+<div class="span12">
+<form action="<?php echo site_url('admin/user/proses_banned'); ?>" method="POST" class="form-horizontal">
         <div class="control-group">
           <label class="control-label">Username</label>
           <div class="controls">
@@ -39,6 +43,10 @@
           <a href="<?php echo site_url('admin/user/view/'.$user['id_user']); ?>" type="button" class="btn">Cancel</a>
         </div>
       </form>
-    </div>
   </div>
-</div>  
+</div>
+<div class="row-fluid">
+  <div class="span12 center paging">
+    <?php echo $this->pagination->create_links(); ?>
+  </div>
+</div>

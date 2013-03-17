@@ -18,34 +18,31 @@ Class user extends CI_Controller
 		$config['uri_segment'] = 4;
 
 		$this->pagination->initialize($config); 
-
+		$data['no'] = $offset + 1;
 		$data['users'] = $this->M_user->get($config['per_page'],$offset);
 		$data['menu'] = 'admin';
-		$data['nav'] = 'users';
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
+		$header['nav'] = 'users';
+		$this->load->view('admin/templates/header',$header);
 		$this->load->view('admin/user/user',$data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function view($id_user){
 		$data['user'] = $this->M_user->get_user($id_user);
 		$data['menu'] = 'admin';
-		$data['nav'] = 'users';
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
+		$header['nav'] = 'users';
+		$this->load->view('admin/templates/header',$header);
 		$this->load->view('admin/user/detail_user',$data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function banned($id_user){
 		$data['user'] = $this->M_user->get_user($id_user);
 		$data['menu'] = 'admin';
-		$data['nav'] = 'users';
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
+		$header['nav'] = 'users';
+		$this->load->view('admin/templates/header',$header);
 		$this->load->view('admin/user/form_banned',$data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function proses_banned(){

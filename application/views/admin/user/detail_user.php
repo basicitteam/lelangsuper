@@ -1,13 +1,18 @@
-<div class="row"><!-- Start Main Content -->
-
-<div class="span9 pull-left">
-          <div>
-              <h4 class="btn btn-warning" style="width:97%;box-shadow: 0px -2px 7px #ccc;">View User</h4>
-              <hr>
-          </div>
-          <div class="row">
-            <div class="span5">
-              <table class="table table-striped">
+<div class="row-fluid">
+<div class="span12">
+    <ul class="breadcrumb">
+      <li>Detail Informasi User</li>
+    </ul>
+</div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <?php echo $this->session->flashdata('msg'); ?>
+  </div>
+</div>
+<div class="row-fluid">
+<div class="span6">
+<table class="table table-striped">
                 <tr>
                   <td>Nama User</td>
                   <td><?php echo $user['nama_user']; ?></td>
@@ -64,10 +69,9 @@
                   <td>Jenis Kelamin</td>
                   <td><?php echo $user['jns_kelamin']; ?></td>
                 </tr>
-              </table>
-            </div>
-            <div class="span4">
-              <p class="center alert alert-info">Informasi Status User</p>
+              </table>  
+</div>
+<div class="span6">
               <table class="table table-striped">
                 <tr>
                   <td>Status</td>
@@ -101,6 +105,10 @@
                   <td colspan="2"><a href="<?php echo site_url('admin/user/banned/'.$user['id_user']); ?>" class="btn btn-danger">Banned User</a> <a href="<?php echo site_url('admin/user/'); ?>" class="btn btn-primary">Back</a></td>
                 </tr>
               </table>
-            </div>
-          </div>
-      </div>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12 center paging">
+    <?php echo $this->pagination->create_links(); ?>
+  </div>
+</div>

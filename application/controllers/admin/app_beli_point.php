@@ -13,18 +13,16 @@ Class app_beli_point extends CI_Controller{
 	public function index($offset = 0){
 		$config['base_url'] = site_url('admin/app_beli_point/index/');
 		$config['total_rows'] = $this->M_beli_paket->get_num_rows();
-		$config['per_page'] = 10; 
+		$config['per_page'] = 20; 
 		$config['uri_segment'] = 4;
 
 		$this->pagination->initialize($config); 
-
+		$data['no'] = $offset + 1;
 		$data['tagihan'] = $this->M_beli_paket->get($config['per_page'],$offset);
-		$data['menu'] = 'admin';
-		$data['nav'] = 'approve';
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
+		$header['nav'] = 'approve';
+		$this->load->view('admin/templates/header',$header);
 		$this->load->view('admin/app_beli_point/app_beli_point',$data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function approve($id){

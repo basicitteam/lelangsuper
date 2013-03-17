@@ -1,11 +1,18 @@
-<div class="span9">
-	<div class="row">
-          <!--<div class="span9"> -->
-        <h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Manage Paket Point</h3>
-        <br></br>
-        <div class="span9">
-	<?php echo $this->pagination->create_links(); ?>
-	<table class="table">
+        <div class="row-fluid">
+        <div class="span12">
+            <ul class="breadcrumb">
+              <li>Approve Pembelian Point</li>
+            </ul>
+        </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <?php echo $this->session->flashdata('msg'); ?>
+          </div>
+        </div>
+        <div class="row-fluid">
+        <div class="span12">
+          <table class="table">
 		<thead>
 			<tr>
 				<th>No.</th>
@@ -20,7 +27,6 @@
 		</thead>
 		<tbody>
 			<?php
-			$no = 1;
 			foreach ($tagihan as $key) {
 			?>
 			<tr>
@@ -50,7 +56,10 @@
 			?>
 		</tbody>
 	</table>
-	<?php echo $this->pagination->create_links(); ?>
-</div>
-</div>
-</div>
+        </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12 center paging">
+            <?php echo $this->pagination->create_links(); ?>
+          </div>
+        </div>

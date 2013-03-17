@@ -164,8 +164,13 @@ Class lelang extends CI_Controller{
 	}
 
 	public function delete($id){
-		$this->M_lelang->delete($id);
-		$this->session->set_flashdata('msg','<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>Delete Barang Lelang id : '.$id.' Berhasil!</p>');
+		if($this->M_lelang->get_pemenang($id) == false){
+			$this->session->set_flashdata('msg','<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>Delete Barang Lelang id : '.$id.' Berhasil!</p>');
+			$this->M_lelang->delete($id);
+		}
+		else{
+			$this->session->set_flashdata('msg','<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>Delete Gagal, lelang tersebut sudah berlangsung!</p>');
+		}
 		redirect('admin/lelang');
 	}
 }

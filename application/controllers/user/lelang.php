@@ -290,10 +290,7 @@ Class lelang extends CI_Controller{
 								//naikkan harga sesuai kenaikan harga per bid
 								if($lelang['harga_min'] <= $lelang['harga_max']){
 									$harga_baru = $lelang['harga_min'] + $lelang['kenaikan_harga'];
-									$update_harga = array(
-										'harga_min' => $harga_baru
-										);
-									$this->M_lelang->update($update_harga,$id);
+									$this->_update_harga_lelang($id,$harga_baru);
 								}
 								else{
 									$harga_baru = $lelang['harga_min'];
@@ -347,10 +344,7 @@ Class lelang extends CI_Controller{
 								//naikkan harga sesuai kenaikan harga per bid
 								if($lelang['harga_min'] <= $lelang['harga_max']){
 									$harga_baru = $lelang['harga_min'] + $lelang['kenaikan_harga'];
-									$update_harga = array(
-										'harga_min' => $harga_baru
-										);
-									$this->M_lelang->update($update_harga,$id);
+									$this->_update_harga_lelang($id,$harga_baru);
 								}
 								else{
 									$harga_baru = $lelang['harga_min'];

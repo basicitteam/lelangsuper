@@ -168,6 +168,7 @@ Class lelang extends CI_Controller{
 							//insert pemenang
 							$this->_insert_pemenang($id,$lelang['harga_min']);
 							}
+							$response['msg'] = 'Lelang Berakhir';
 						}
 						else{
 							//lelang dibatalkan

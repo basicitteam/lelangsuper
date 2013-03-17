@@ -71,7 +71,6 @@ Class M_user extends CI_Model{
 			else{
 				return 2;
 			}
-			//return $menang->num_rows();
 		}
 		else
 		{

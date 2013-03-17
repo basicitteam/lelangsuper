@@ -1,26 +1,27 @@
-<div class="span9">
-	<div class="row">
-          <!--<div class="span9"> -->
-        <h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Manage Paket Point</h3>
-        <br></br>
-        <div class="span9">
-   <br>
-  <legend style="box-shadow: 0px -2px 7px #ccc;background-color:#fcf8e3;"> <center><strong>Tambah Barang Lelang</strong></center> </legend>
-  <br>
-  <center>
-	  <a data-toggle="modal" href="#tambah" class="btn btn-warning btn-large"><i class="icon-gift"></i> Tambah Paket</a>
-  </center>
-  <hr>
-  <?php echo $this->session->flashdata('msg'); ?>
-  <hr>
-  <table class="table table-striped" style="box-shadow: 0px -2px 7px #ccc;background-color:#fcf8e3;">
+ <div class="row-fluid">
+<div class="span12">
+    <ul class="breadcrumb">
+      <li>Kelola Paket Point</li>
+    </ul>
+</div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <?php echo $this->session->flashdata('msg'); ?>
+    <a data-toggle="modal" href="#tambah" class="btn btn-primary pull-right"><i class="icon-gift"></i> Tambah Paket</a>
+  </div>
+</div>
+<hr>
+<div class="row-fluid">
+<div class="span12">
+  <table class="table table-hover">
     <thead>
 	 <tr>
-		<th><center>No.</center></th>
-		<th><center>Nama Paket</center></th>
-		<th><center>Harga</center></th>
-		<th><center>Saldo</center></th>
-		<th colspan='1'><center>Action</center></th>
+		<th>No.</th>
+		<th>Nama Paket</th>
+		<th>Harga</th>
+		<th>Saldo</th>
+		<th colspan='2'>Action</th>
 	 </tr>
 	</thead>
 	<tbody>
@@ -28,12 +29,11 @@
 	 $no = 1;
 	 foreach ($data_paket as $paket) { ?>
 	  <tr>				
-		<td><center><?php echo $no++; ?></center></td>
-		<td><center><?php echo $paket['nama_paket'] ?></center></td>
-		<td><center>Rp. <?php echo $this->cart->format_number($paket['harga_paket']) ?></center></td>
-		<td><center><?php echo $paket['point_utama'] ?></center></td>
+		<td><?php echo $no++; ?>.</td>
+		<td><?php echo $paket['nama_paket'] ?></td>
+		<td>Rp. <?php echo $this->cart->format_number($paket['harga_paket']) ?></td>
+		<td><?php echo $paket['point_utama'] ?></td>
 		<td>
-		 <center>
 		  	<a class="btn btn-info" href="<?php echo site_url('admin/point/edit/'.$paket['id_paket']);?>">
 			  <i class="icon-edit"></i>
 			  Edit
@@ -42,14 +42,21 @@
 			  <i class="icon-remove"></i>
 			  Delete
 			</a>                    
-		 </center>
 		</td>
 	  </tr>
 	 <?php } ?>
    </tbody>
   </table>
-  
-  <form class="form-horizontal" action="<?php echo site_url('admin/point/add_paket'); ?>" method="POST" enctype="multipart/form-data">
+</div>
+</div>
+<div class="row-fluid">
+  <div class="span12 center paging">
+    <?php echo $this->pagination->create_links(); ?>
+  </div>
+</div>
+
+<!-- Modal -->
+<form class="form-horizontal" action="<?php echo site_url('admin/point/add_paket'); ?>" method="POST" enctype="multipart/form-data">
 	<div id="tambah" class="modal fade out" style="display: none;" >
 	  <legend><center>Tambah Paket Point</center></legend>
 			<div class="control-group">
@@ -76,20 +83,3 @@
 			</div>
 	</div>
   </form>
-  
-	<div id="edit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="myModalLabel">View Materi</h3>
-	  </div>
-	  <div class="modal-body">
-			
-	  </div>
-	  <div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-	  </div>
-	</div>
-</div>
-	</div>
-</div>	
-	

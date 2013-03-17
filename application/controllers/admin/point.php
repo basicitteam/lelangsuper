@@ -12,11 +12,10 @@ Class point extends CI_Controller{
 	{
 		$data['data_paket'] = $this->M_paketpoint->get_paket();
 		$data['menu'] = 'admin';
-		$data['nav'] = 'paket';
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
+		$header['nav'] = 'paket';
+		$this->load->view('admin/templates/header',$header);
 		$this->load->view('admin/paket/paket_point',$data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/footer');
 	}
 	
 	
@@ -24,11 +23,10 @@ Class point extends CI_Controller{
 	{							
 		$data['data_paket_point'] = $this->M_paketpoint->get($id);
 		$data['menu'] = 'admin';
-		$data['nav'] = 'paket';
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
+		$header['nav'] = 'paket';
+		$this->load->view('admin/templates/header',$header);
 		$this->load->view('admin/paket/edit',$data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/footer');
 	}
 	
 	public function add_paket()

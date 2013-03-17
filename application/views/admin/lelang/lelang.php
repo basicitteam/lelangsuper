@@ -8,6 +8,7 @@
 <div class="row">
           <!--<div class="span9"> -->
   <div class="span9">
+    <?php echo $this->session->flashdata('msg'); ?>
     <a class="btn btn-warning pull-right" href="<?php echo site_url('admin/lelang/add'); ?>">Tambah Barang Lelang</a>
   </div>
 </div>

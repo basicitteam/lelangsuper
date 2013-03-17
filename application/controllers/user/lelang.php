@@ -120,15 +120,8 @@ Class lelang extends CI_Controller{
 
 					//cek apakah user sudah dapat point golden periode
 					if($this->M_lelang->get_user_point_gp_null($id) != false){
-						$list_user = $this->M_lelang->get_user_point_gp_null($id);
-						//kasi masing2 user point golden periode
-						foreach ($list_user as $key) {
-							$point_terpakai = $lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']);
-							$point_golden = round($point_terpakai * 30 / 100);
-							//echo $key['id_user'].' '.$point_golden.'<br>';
-							//update point golden ke tabel ikut lelang
-							$this->M_lelang->update_point_golden($key['id_ikut_lelang'],$point_golden);
-						}
+						//insert point golden
+						$this->_insert_point_golden($id,$lelang['point_bid']);
 					}
 
 					//cek golden periode masih aktif atau ngga
@@ -143,44 +136,19 @@ Class lelang extends CI_Controller{
 							//lelang valid
 							//cek apakah ada pemenang?
 							if($this->M_lelang->get_pemenang($id) != false){
-							$pemenang = $this->M_lelang->get_pemenang($id);
-								//cek apakah sudah di insert
-								if($this->M_menang_lelang->is_pemenang_exist($id,$pemenang['id_user']) == false){
-									//belum di insert
-									$response['msg'] = 'ok';
-									$ikut_lelang = $this->M_ikut_lelang->get_ikut_lelang($id,$pemenang['id_user']);
-									//insert ke tabel menang lelang
-									$menang = array(
-										'id_ikut_lelang' => $ikut_lelang['id_ikut_lelang'],
-										'harga' => $lelang['harga_min'],
-										);
-									$this->M_menang_lelang->insert($menang);
-								}
+							//insert pemenang
+							$this->_insert_pemenang($id,$lelang['harga_min']);
 							}
 							$response['msg'] = 'Lelang Berakhir';
 						}
 						else{
 							//lelang dibatalkan
 							//kembalikan semua point user
-							//get bidder yg udah absen
-							$ikut_lelang = $this->M_lelang->get_ikut_lelang($id);
-							//foreach masing2 user
-							foreach ($ikut_lelang as $key) {
-								//echo 'id_user : '.$key['id_user'].' jumlah bid : '.$this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']).' Point habis : '.$lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']).'<br/>';
-								$point_terpakai = $lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']);
-								$saldo_user = $this->M_user->get_saldo($key['id_user']);
-								$update_saldo = array(
-									'saldo' => $saldo_user + $point_terpakai
-									);
-								$this->M_user->update_saldo($key['id_user'],$update_saldo);
-							}
+							$this->_rollback_point($id,$lelang['point_bid']);
 							//hapus dari database ikut lelang, tawar & menang
 							$this->M_lelang->clean_lelang($id);
 							//set harga lelang jadi 0 lagi
-							$update_harga = array(
-								'harga_min' => 0
-								);
-							$this->M_lelang->update($update_harga,$id);
+							$this->_update_harga_lelang($id,0);
 							$response['msg'] = 'Lelang Dibatalkan';
 						}
 					}//end else golden periode ngga aktif
@@ -197,44 +165,18 @@ Class lelang extends CI_Controller{
 							//lelang valid
 							//cek apakah ada pemenang?
 							if($this->M_lelang->get_pemenang($id) != false){
-							$pemenang = $this->M_lelang->get_pemenang($id);
-								//cek apakah sudah di insert
-								if($this->M_menang_lelang->is_pemenang_exist($id,$pemenang['id_user']) == false){
-									//belum di insert
-									$response['msg'] = 'ok';
-									$ikut_lelang = $this->M_ikut_lelang->get_ikut_lelang($id,$pemenang['id_user']);
-									//insert ke tabel menang lelang
-									$menang = array(
-										'id_ikut_lelang' => $ikut_lelang['id_ikut_lelang'],
-										'harga' => $lelang['harga_min'],
-										);
-									$this->M_menang_lelang->insert($menang);
-								}
-								$response['msg'] = 'Lelang Berakhir dengan pemenang id_user : '.$pemenang['id_user'];
+							//insert pemenang
+							$this->_insert_pemenang($id,$lelang['harga_min']);
 							}
 						}
 						else{
 							//lelang dibatalkan
 							//kembalikan semua point user
-							//get bidder yg udah absen
-							$ikut_lelang = $this->M_lelang->get_ikut_lelang($id);
-							//foreach masing2 user
-							foreach ($ikut_lelang as $key) {
-								//echo 'id_user : '.$key['id_user'].' jumlah bid : '.$this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']).' Point habis : '.$lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']).'<br/>';
-								$point_terpakai = $lelang['point_bid'] * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']);
-								$saldo_user = $this->M_user->get_saldo($key['id_user']);
-								$update_saldo = array(
-									'saldo' => $saldo_user + $point_terpakai
-									);
-								$this->M_user->update_saldo($key['id_user'],$update_saldo);
-							}
+							$this->_rollback_point($id,$lelang['point_bid']);
 							//hapus dari database ikut lelang, tawar & menang
 							$this->M_lelang->clean_lelang($id);
 							//set harga lelang jadi 0 lagi
-							$update_harga = array(
-								'harga_min' => 0
-								);
-							$this->M_lelang->update($update_harga,$id);
+							$this->_update_harga_lelang($id,0);
 							$response['msg'] = 'Lelang Dibatalkan';
 						}
 					}
@@ -255,7 +197,6 @@ Class lelang extends CI_Controller{
 		$response['hemat'] = $this->cart->format_number($lelang['harga_pasar'] - $lelang['harga_min']);
 		$response['pemenang'] = $this->M_lelang->get_pemenang($id);
 		echo json_encode($response);
-		//echo '<br>'.date('r',$lelang['golden_periode']) .'<'.date('r',time());
 	}
 
 	//ajax, response json
@@ -287,7 +228,6 @@ Class lelang extends CI_Controller{
 							$update_harga = array(
 								'harga_min' => $harga_baru
 								);
-							//echo $harga_baru;
 							$this->M_lelang->update($update_harga,$id);
 						}
 						else{
@@ -462,5 +402,53 @@ Class lelang extends CI_Controller{
 
 	public function clean($id){
 		$this->M_lelang->clean_lelang($id);
+	}
+
+	private function _insert_pemenang($id,$harga_min){
+		$pemenang = $this->M_lelang->get_pemenang($id);
+		//cek apakah sudah di insert
+		if($this->M_menang_lelang->is_pemenang_exist($id,$pemenang['id_user']) == false){
+			//belum di insert
+			$response['msg'] = 'ok';
+			$ikut_lelang = $this->M_ikut_lelang->get_ikut_lelang($id,$pemenang['id_user']);
+			//insert ke tabel menang lelang
+			$menang = array(
+				'id_ikut_lelang' => $ikut_lelang['id_ikut_lelang'],
+				'harga' => $harga_min,
+				);
+			$this->M_menang_lelang->insert($menang);
+		}
+	}
+
+	private function _insert_point_golden($id,$point_bid){
+		$list_user = $this->M_lelang->get_user_point_gp_null($id);
+		//kasi masing2 user point golden periode
+		foreach ($list_user as $key) {
+			$point_terpakai = $point_bid * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']);
+			$point_golden = round($point_terpakai * 30 / 100);
+			//update point golden ke tabel ikut lelang
+			$this->M_lelang->update_point_golden($key['id_ikut_lelang'],$point_golden);
+		}
+	}
+
+	private function _rollback_point($id,$point_bid){
+		//get bidder yg udah absen
+		$ikut_lelang = $this->M_lelang->get_ikut_lelang($id);
+		//foreach masing2 user
+		foreach ($ikut_lelang as $key) {
+			$point_terpakai = $point_bid * $this->M_lelang->get_jumlah_bid_user($key['id_ikut_lelang']);
+			$saldo_user = $this->M_user->get_saldo($key['id_user']);
+			$update_saldo = array(
+				'saldo' => $saldo_user + $point_terpakai
+				);
+			$this->M_user->update_saldo($key['id_user'],$update_saldo);
+		}
+	}
+
+	private function _update_harga_lelang($id,$harga){
+		$update_harga = array(
+						'harga_min' => $harga
+						);
+		$this->M_lelang->update($update_harga,$id);
 	}
 }

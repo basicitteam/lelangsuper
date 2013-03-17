@@ -23,7 +23,7 @@ Class M_lelang extends CI_Model{
 	}
 
 	public function get_recent($limit = 100, $offset = 0){
-		$this->db->order_by("waktu_selesai", "asc"); 
+		$this->db->order_by("waktu_selesai", "DESC"); 
 		$this->db->where('waktu_selesai < ',time());
 		$this->db->join('t_ikut_lelang','t_ikut_lelang.id_lelang = t_lelang.id_lelang');
 		$this->db->join('t_user','t_user.id_user = t_ikut_lelang.id_user');
@@ -32,13 +32,6 @@ Class M_lelang extends CI_Model{
 		return $query->result_array();	
 	}
 	
-	/*public function get_imgslide($limit = 50, $offset = 0){
-		$this->db->order_by("waktu_mulai", "asc"); 
-		$this->db->where('waktu_selesai > ',time());
-		$query = $this->db->get('t_lelang',$limit, $offset);
-		return $query->row_array();	
-	}*/
-
 	public function get_lelang($id){
 		$query = $this->db->get_where('t_lelang',array('id_lelang' => $id));
 		return $query->row_array();	
@@ -57,7 +50,7 @@ Class M_lelang extends CI_Model{
 		return $query->result_array();
 	}
 
-	public function is_periode_exist($id){
+	/*public function is_periode_exist($id){
 		$query = $this->db->get_where('t_periode_lelang',array('id_lelang' => $id));
 		if($query->num_rows() > 0){
 			return true;
@@ -65,22 +58,22 @@ Class M_lelang extends CI_Model{
 		else{
 			return false;
 		}
-	}
+	}*/
 
-	public function get_periode_terbaru($id){
+	/*public function get_periode_terbaru($id){
 		$this->db->order_by('periode','DESC');
 		$query = $this->db->get_where('t_periode_lelang',array('id_lelang' => $id));
 		return $query->row_array();
-	}
+	}*/
 
-	public function get_jmlh_absen($id){
+	/*public function get_jmlh_absen($id){
 		$query = $this->db->get_where('t_ikut_lelang',array('id_lelang' => $id));
 		return $query->num_rows();
-	}
+	}*/
 
-	public function insert_periode($data){
+	/*public function insert_periode($data){
 		return $this->db->insert('t_periode_lelang',$data);
-	}
+	}*/
 
 	public function get_bidder($id_lelang){
 		$this->db->order_by('waktu_tawar','DESC');
@@ -91,13 +84,13 @@ Class M_lelang extends CI_Model{
 		return $query->result_array();
 	}
 
-	public function get_jmlh_bidder_periode($id_periode){
+	/*public function get_jmlh_bidder_periode($id_periode){
 		$this->db->group_by("id_ikut_lelang"); 
 		$query = $this->db->get_where('t_log_lelang',array('id_periode_lelang' => $id_periode));
 		return $query->num_rows();
-	}
+	}*/
 
-	public function is_user_exist_on_periode($id_periode,$id_user){
+	/*public function is_user_exist_on_periode($id_periode,$id_user){
 		$this->db->join('t_ikut_lelang','t_ikut_lelang.id_ikut_lelang = t_log_lelang.id_ikut_lelang');
 		$query = $this->db->get_where('t_log_lelang',array('t_log_lelang.id_periode_lelang' => $id_periode,'t_ikut_lelang.id_user' => $id_user));
 		if($query->num_rows() > 0){
@@ -106,21 +99,21 @@ Class M_lelang extends CI_Model{
 		else{
 			return false;
 		}
-	}
+	}*/
 
 	public function insert_tawar($data){
 		return $this->db->insert('t_tawar',$data);
 	}
 
-	public function update_periode($data,$id_periode){
+	/*public function update_periode($data,$id_periode){
 		$this->db->where('id_periode_lelang', $id_periode);
 		return $this->db->update('t_periode_lelang', $data); 
-	}
+	}*/
 
-	public function get_periode_sebelumnya($periode,$id_lelang){
+	/*public function get_periode_sebelumnya($periode,$id_lelang){
 		$query = $this->db->get_where('t_periode_lelang',array('periode' => $periode - 1,'id_lelang' => $id_lelang));
 		return $query->row_array();
-	}
+	}*/
 
 	public function get_pemenang($id_lelang){
 		$this->db->order_by('t_tawar.waktu_tawar','DESC');

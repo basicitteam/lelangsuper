@@ -16,22 +16,19 @@ Class lelang extends CI_Controller{
 		$config['uri_segment'] = 4;
 
 		$this->pagination->initialize($config); 
-		$head['menu'] = 'admin';
-		$data['nav'] = 'lelang';
+		$data['no'] = $offset + 1;
 		$data['lelang'] = $this->M_lelang->get($config['per_page'],$offset);
-		$this->load->view('templates/header',$head);
-		$this->load->view('admin/templates/navigation',$data);
+		$header['nav'] = 'lelang';
+		$this->load->view('admin/templates/header',$header);
 		$this->load->view('admin/lelang/lelang',$data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function add(){
-		$data['menu'] = 'admin';
-		$data['nav'] = 'lelang';
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
+		$header['nav'] = 'lelang';
+		$this->load->view('admin/templates/header',$header);
 		$this->load->view('admin/lelang/add');
-		$this->load->view('templates/footer');	
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function add_proses(){
@@ -45,7 +42,7 @@ Class lelang extends CI_Controller{
 		$this->form_validation->set_rules('point_bid', 'Point Bidding', 'required');
 		$this->form_validation->set_rules('point_daftar', 'Point Daftar', 'required');
 		$this->form_validation->set_rules('kenaikan_harga', 'Kenaikan Harga', 'required');
-		$this->form_validation->set_error_delimiters('<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>', '</p>');
+		$this->form_validation->set_error_delimiters('<span class="help-inline">', '</span>');
 		
 		if($this->input->post('golden_periode')){
 			$golden_periode = strtotime($this->input->post('golden_periode'));
@@ -78,36 +75,30 @@ Class lelang extends CI_Controller{
 					);
 				$this->M_lelang->insert($data);
 				$this->session->set_flashdata('msg','<p class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>Tambah Barang Lelang Berhasil!</p>');
-			}
-			else
-			{
-				$this->session->set_flashdata('msg','<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>Tambah Barang Lelang Gagal!</p>'.$this->upload->display_errors());
+				redirect('admin/lelang');
 			}	
 		}
-		else{
-			$this->session->set_flashdata('msg','<p class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>Tambah Barang Lelang Gagal! '.validation_errors().'</p>');
-		}
-		redirect('admin/lelang');
+		$data['error'] = $this->upload->display_errors();
+		$header['nav'] = 'lelang';
+		$this->load->view('admin/templates/header',$header);
+		$this->load->view('admin/lelang/add',$data);
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function view($id){
-		$data['menu'] = 'admin';
-		$data['nav'] = 'lelang';
 		$data['lelang'] = $this->M_lelang->get_lelang($id);
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
+		$header['nav'] = 'lelang';
+		$this->load->view('admin/templates/header',$header);
 		$this->load->view('admin/lelang/view',$data);
-		$this->load->view('templates/footer');	
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function edit($id){
-		$data['menu'] = 'admin';
-		$data['nav'] = 'lelang';
+		$header['nav'] = 'lelang';
 		$data['lelang'] = $this->M_lelang->get_lelang($id);
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
-		$this->load->view('admin/lelang/edit',$data);	
-		$this->load->view('templates/footer');	
+		$this->load->view('admin/templates/header',$header);
+		$this->load->view('admin/lelang/edit',$data);
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function update(){

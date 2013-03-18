@@ -21,7 +21,7 @@
 		<th>Nama Paket</th>
 		<th>Harga</th>
 		<th>Saldo</th>
-		<th colspan='2'>Action</th>
+		<th colspan='2' class="center">Action</th>
 	 </tr>
 	</thead>
 	<tbody>
@@ -38,10 +38,12 @@
 			  <i class="icon-edit"></i>
 			  Edit
 			</a>
+		</td>
+		<td>
 			<a class="btn btn-danger" href="<?php echo site_url('admin/point/delete/'.$paket['id_paket']);?>">
 			  <i class="icon-remove"></i>
 			  Delete
-			</a>                    
+			</a>
 		</td>
 	  </tr>
 	 <?php } ?>

@@ -11,12 +11,34 @@ Class voucher extends CI_Controller{
     
 	public function index()
 	{
-		$data['menu'] = 'admin';
-		$data['nav'] = 'voucher';
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
-		$this->load->view('admin/voucher/voucher');
-		$this->load->view('templates/footer');
+		$this->load->library('excel_reader');
+
+		$uploadpath = 'assets/uploads/files/voucher.xls';
+		$this->excel_reader->read($uploadpath);
+		// Read the first workbook in the file
+		$worksheetrows = $this->excel_reader->worksheets[0];
+		$worksheetcolumns = 4;
+		/*echo "<table>";
+		foreach($worksheetrows as $worksheetrow)
+		{
+		      echo "<tr>";
+		     for($i=0; $i<$worksheetcolumns; $i++)
+		    {
+		           // if the field is not blank -- otherwise CI will throw warnings
+		           if (isset($worksheetrow[$i]))
+		                 echo "<td>".$worksheetrow[$i]."</td>";
+		           // empty field
+		           else
+		                 echo "<td>&nbsp; </td>";
+		     }
+		     echo "</tr>";
+		} 
+		echo "</table>";*/
+		$data['voucher'] = $worksheetrows;
+		$header['nav'] = 'voucher';
+		$this->load->view('admin/templates/header',$header);
+		$this->load->view('admin/voucher/voucher',$data);
+		$this->load->view('admin/templates/footer');
 	}
 	public function generate()
 	{

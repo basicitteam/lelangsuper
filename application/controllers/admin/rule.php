@@ -12,11 +12,25 @@ Class rule extends CI_Controller
     
 	public function index()
 	{
-		$data['menu'] = 'admin';
-		$data['nav'] = 'rule';
-		$this->load->view('templates/header',$data);
-		$this->load->view('admin/templates/navigation',$data);
-		$this->load->view('admin/rule/rule');
-		$this->load->view('templates/footer');
+		$data['articles'] = $this->M_help->get();
+		$data['no'] = 1;
+		$header['nav'] = 'rule';
+		$this->load->view('admin/templates/header',$header);
+		$this->load->view('admin/rule/rule',$data);
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function edit($id){
+		$data['article'] = $this->M_help->get_help($id);
+		$header['nav'] = 'rule';
+		$this->load->view('admin/templates/header',$header);
+		$this->load->view('admin/rule/edit',$data);
+		$this->load->view('admin/templates/footer');	
+	}
+
+	public function update(){
+		$this->M_help->update($this->input->post('id_article'),$this->input->post('article'));
+		$this->session->set_flashdata('msg','<p class="alert alert-success"><strong>'.$this->input->post('subject').'</strong> Berhasil Di Update!</p>');
+		redirect('admin/rule');
 	}
 }

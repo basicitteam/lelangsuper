@@ -15,6 +15,7 @@
     <script src="<?php echo base_url('assets/js/jquery-ui-1.10.0.custom.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-ui-timepicker-addon.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/tiny_mce/tiny_mce.js'); ?>"></script>
     <script type="text/javascript">
     $.ajaxSetup({ cache: false });
     var base_url = '<?php echo base_url(); ?>';
@@ -36,6 +37,14 @@
     //buat reset modal ketika modal diclose
     $('body').on('hidden', '.modal', function () {
       $(this).removeData('modal');
+    });
+
+    //tinymce
+    tinyMCE.init({
+        // General options
+        mode : "textareas",
+        theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect|,bullist,numlist",
+        theme_advanced_buttons2 : "outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,code,|,forecolor,backcolor,|,tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr",
     });
 	});
     </script>

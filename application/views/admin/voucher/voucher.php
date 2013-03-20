@@ -1,3 +1,10 @@
+<style type="text/css">
+#formimport {
+background-color: whitesmoke;
+padding: 1px;
+border-radius: 4px;
+}
+</style>
 <div class="row-fluid">
 <div class="span12">
     <ul class="breadcrumb">
@@ -8,6 +15,12 @@
 <div class="row-fluid">
   <div class="span12">
     <?php echo $this->session->flashdata('msg'); ?>
+  <form id="formimport" class="form-inline pull-right" method="POST" action="<?php echo site_url('admin/voucher/import'); ?>" enctype="multipart/form-data">
+  <div class="input-append">
+  <input type="file" name="userfile">
+  <button class="btn btn-primary" type="submit">Import</button>
+  </div>
+  </form>
   </div>
 </div>
 <div class="row-fluid">
@@ -20,19 +33,31 @@
                   <th>Saldo</th>
                   <th>Jenis Voucher</th>
                   <th>Harga</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $no = 1;
                 foreach ($voucher as $key) {
                 ?>
                 <tr>
-                  <td><?php echo $no++ ?></td>
-                  <td><?php var_dump($key[0]); ?></td>
-                  <td><?php echo $key[1]; ?></td>
-                  <td><?php echo $key[2]; ?></td>
-                  <td><?php echo $key[3]; ?></td>
+                  <td><?php echo $no++; ?>.</td>
+                  <td><?php echo $key['kode_voucher']; ?></td>
+                  <td><?php echo $key['saldo']; ?></td>
+                  <td><?php echo $key['jenis_voucher']; ?></td>
+                  <td>Rp. <?php echo $this->cart->format_number($key['harga']); ?></td>
+                  <td><?php 
+                  if($key['status'] == 0){
+                    ?>
+                    <a href="<?php echo site_url('admin/voucher/set_status/'.$key['id_voucher']); ?>" class="btn btn-info">Tersedia</a>
+                    <?php
+                  }
+                  else{
+                  ?>
+                  <a href="<?php echo site_url('admin/voucher/set_status/'.$key['id_voucher']); ?>" class="btn btn-warning">Terjual</a>
+                  <?php
+                  }
+                  ?></td>
                 </tr>
                 <?php
                 }

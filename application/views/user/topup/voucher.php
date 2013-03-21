@@ -16,6 +16,16 @@
 											<input class="input-large" name="no_voucher" type="text" placeholder="Masukan No Voucher"> 
 										</td>
 									</tr>
+									<tr>
+										<td></td>
+										<td><?php echo $img; ?> </td>
+									</tr>
+									<tr>
+										<td>Captcha</td>
+										<td>
+											<input class="input-large" name="captcha" type="text" placeholder="Captcha"> 
+										</td>
+									</tr>
 								</tbody>
 						</table>
 						<button class="btn btn-primary" type="submit">Submit</button>

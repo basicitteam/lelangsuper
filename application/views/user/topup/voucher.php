@@ -6,7 +6,8 @@
 				<h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Voucher Lelang</h3>
 				<div class="span9">
 					<br>
-					<form action="<?php echo site_url('user/topup/voucher/validasi'); ?>" method="POST">
+					<?php echo $this->session->flashdata('msg'); ?>
+					<form action="<?php echo site_url('user/topup/validasi_voucher'); ?>" method="POST">
 						<table class="table table-striped" style="box-shadow: 0px -2px 7px #ccc;background-color:#fcf8e3;">
 								<tbody>
 									<tr>
@@ -23,7 +24,6 @@
 				</div>
 				</div>
 				<!--</div> End Row span9 Content Lelang Sedang Berlangsung-->
-
 			
 			</div><!-- End Content Span9-->
 </div><!-- End Row Main Content -->

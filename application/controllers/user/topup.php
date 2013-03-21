@@ -45,4 +45,30 @@ Class topup extends CI_Controller{
 		$this->load->view('user/topup/voucher');
 		$this->load->view('templates/footer');
 	}
+
+	public function validasi_voucher(){
+		if($this->M_voucher->is_voucher_valid($this->input->post('no_voucher')) && $this->M_voucher->is_used($this->input->post('no_voucher')) == false){
+			//tambahin ke saldo user
+			$voucher = $this->M_voucher->get_by_kode($this->input->post('no_voucher'));
+			$saldo_user = $this->M_user->get_saldo($this->session->userdata('id_user'));
+			$data = array(
+			'saldo' => $saldo_user += $voucher['saldo'],
+			);
+			$this->M_user->update_saldo($this->session->userdata('id_user'),$data);
+			//insert ke tabel beli voucher
+
+			$beli_voucher = array(
+				'id_user' => $this->session->userdata('id_user'),
+				'id_voucher' => $voucher['id_voucher']
+				);
+			$this->M_voucher->beli_voucher($beli_voucher);
+
+			$this->session->set_flashdata('msg','<p class="alert alert-success">Pengisian Voucher Berhasil! Saldo anda : '.$data['saldo'].'</p>');
+        	redirect('user/topup/voucher');
+		}
+		else{
+			$this->session->set_flashdata('msg','<p class="alert alert-danger">Voucher Tidak Valid!</p>');
+        	redirect('user/topup/voucher');
+		}
+	}
 }

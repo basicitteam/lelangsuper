@@ -101,7 +101,6 @@ Class voucher extends CI_Controller{
 		else{
 			$this->M_voucher->set_status($id,1);
 		}
-
 		$this->session->set_flashdata('msg','<p class="alert alert-success">Berhasil Update Status Untuk Kode Voucher '.$voucher['kode_voucher'].'</p>');
         redirect('admin/voucher');
 	}

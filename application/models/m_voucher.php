@@ -5,11 +5,13 @@ Class M_voucher extends CI_Model{
 	}
 
 	public function get($limit = 100, $offset = 0){
+		$this->db->where('id_voucher not in (select id_voucher from t_beli_voucher)');
 		$query = $this->db->get('t_voucher',$limit, $offset);
 		return $query->result_array();
 	}
 
 	public function get_num_rows(){
+		$this->db->where('id_voucher not in (select id_voucher from t_beli_voucher)');
 		$query = $this->db->get('t_voucher');
 		return $query->num_rows();
 	}

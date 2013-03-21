@@ -68,6 +68,7 @@ text-align: center;
 					  	<a href="<?php echo site_url('admin/user'); ?>"><i class="icon-user"></i> <span class="hidden-tablet">Users</span></a></li>
 				  <li <?php if(isset($nav)){ if($nav == 'voucher'){ echo 'class="active"'; }} ?>>
 					  	<a href="<?php echo site_url('admin/voucher'); ?>"><i class="icon-file"></i> <span class="hidden-tablet">Voucher</span></a></li>
+				<li <?php if(isset($nav)){ if($nav == 'arsip_voucher'){ echo 'class="active"'; }} ?>><a href="<?php echo site_url('admin/arsip_voucher'); ?>"><i class="icon-book"></i> <span class="hidden-tablet">Arsip Voucher</span></a></li>
 				  <li <?php if(isset($nav)){ if($nav == 'paket'){ echo 'class="active"'; }} ?>>
 					  	<a href="<?php echo site_url('admin/point'); ?>"><i class="icon-th-large"></i> <span class="hidden-tablet">Paket Point</span></a></li>
 				  <li <?php if(isset($nav)){ if($nav == 'approve'){ echo 'class="active"'; }} ?>>

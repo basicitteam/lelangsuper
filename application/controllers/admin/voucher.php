@@ -68,7 +68,6 @@ Class voucher extends CI_Controller{
 
 			for($i = 2; $i<count($worksheetrows); $i++) {
 	            if(!is_null($worksheetrows[$i]['A']) && $worksheetrows[$i]['A'] != ''){
-	            	var_dump($worksheetrows[$i]['A']).'<br/>';
 	            	if($this->M_voucher->is_voucher_exist($worksheetrows[$i]['A']) == false){
 	            		$insert[] = array(
 	            		'kode_voucher' => $worksheetrows[$i]['A'],
@@ -79,7 +78,7 @@ Class voucher extends CI_Controller{
 	            	}
 	            }
 	        }
-	        if(!is_null($insert)){
+	        if(isset($insert) && !is_null($insert)){
 	        	$this->M_voucher->insert($insert);
 	        }
 

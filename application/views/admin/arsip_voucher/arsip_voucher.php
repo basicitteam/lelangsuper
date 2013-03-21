@@ -23,6 +23,19 @@
                 </tr>
               </thead>
               <tbody>
+                <?php
+                foreach ($arsip_voucher as $key) {
+                ?>
+                <tr>
+                  <td><?php echo $no++; ?>.</td>
+                  <td><?php echo $key['kode_voucher']; ?></td>
+                  <td><?php echo $key['username']; ?></td>
+                  <td><?php echo $key['saldo']; ?></td>
+                  <td><?php echo $key['tanggal_beli']; ?></td>
+                </tr>
+                <?php
+                }
+                ?>
               </tbody>
             </table>
 </div>

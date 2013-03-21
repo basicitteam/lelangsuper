@@ -6,38 +6,19 @@
 				<h3 class="btn btn-warning" style="width: 94%;margin-left: 30px;box-shadow: 0px -2px 7px #ccc;">Voucher Lelang</h3>
 				<div class="span9">
 					<br>
+					<form action="<?php echo site_url('user/topup/voucher/validasi'); ?>" method="POST">
 						<table class="table table-striped" style="box-shadow: 0px -2px 7px #ccc;background-color:#fcf8e3;">
 								<tbody>
 									<tr>
+										<td>Masukan No Voucher</td>
 										<td>
-											Masukan No Voucher
-										</td>
-										<td>
-											<input type="text" placeholder="Masukan No Voucher"> 
-											</input>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											
-										</td>
-										<td>
-											<input type="password" placeholder="CAPCA" class="disable"> 
-											</input>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											Masukan No Kode
-										</td>
-										<td>
-											<input type="password" placeholder="Masukan Kode Capca"> 
-											</input>
+											<input class="input-large" name="no_voucher" type="text" placeholder="Masukan No Voucher"> 
 										</td>
 									</tr>
 								</tbody>
 						</table>
-						<a href="<?php echo site_url('user');?>" class="btn btn-warning" data-dismiss="modal">Gunakan Voucher</a>
+						<button class="btn btn-primary" type="submit">Submit</button>
+					</form>
 				 </div>
 				</div>
 				</div>

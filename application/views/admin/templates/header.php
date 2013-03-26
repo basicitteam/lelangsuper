@@ -73,6 +73,11 @@ text-align: center;
 					  	<a href="<?php echo site_url('admin/point'); ?>"><i class="icon-th-large"></i> <span class="hidden-tablet">Paket Point</span></a></li>
 				  <li <?php if(isset($nav)){ if($nav == 'approve'){ echo 'class="active"'; }} ?>>
 					  	<a href="<?php echo site_url('admin/app_beli_point'); ?>"><i class="icon-shopping-cart"></i> <span class="hidden-tablet">Pembelian Point</span></a></li>
+				<li class="nav-header"><i class="icon-wrench"></i> Settings</li>
+				<li <?php if(isset($nav)){ if($nav == 'chat'){ echo 'class="active"'; }} ?>>
+					  	<a href="<?php echo site_url('admin/settings/chat'); ?>"><i class="icon-comment"></i> <span class="hidden-tablet">Chat</span></a></li>
+				<li <?php if(isset($nav)){ if($nav == 'slideshow'){ echo 'class="active"'; }} ?>>
+					  	<a href="<?php echo site_url('admin/settings/slideshow'); ?>"><i class="icon-random"></i> <span class="hidden-tablet">Slideshow</span></a></li>
 				</ul>
 			</div>
 			<div class="span10" id="content">

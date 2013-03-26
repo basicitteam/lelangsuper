@@ -163,8 +163,8 @@ pip-log.txt
 .DS_Store
 
 #lelang
-#ignore folder assets/uploads/lelang
-assets/uploads/lelang
+#ignore folder assets/uploads/
+assets/uploads/
 assets/captcha
 #ignore config application
 application/config/config.php

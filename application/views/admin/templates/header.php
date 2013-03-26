@@ -39,6 +39,11 @@ color: #ffffff;
 .center {
 text-align: center;
 }
+
+.slideshowthumb-cont, .slideshowthumb {
+max-height: 90px;
+max-width: 351px;
+}
 	
     </style>
   </head>

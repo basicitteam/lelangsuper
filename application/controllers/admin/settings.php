@@ -18,4 +18,11 @@ Class settings extends CI_Controller{
 		}
 		redirect('admin/settings/chat');
 	}
+
+	public function slideshow(){
+		$header['nav'] = 'chat';
+		$this->load->view('admin/templates/header',$header);
+		$this->load->view('admin/settings/slideshow');
+		$this->load->view('admin/templates/footer');
+	}
 }

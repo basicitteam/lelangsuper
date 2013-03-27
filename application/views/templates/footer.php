@@ -27,7 +27,6 @@
     <script src="<?php echo base_url('assets/js/jquery-1.8.3.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-ui-1.10.0.custom.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/chat.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-ui-timepicker-addon.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.countdown.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap-carousel.js'); ?>"></script>
@@ -92,8 +91,50 @@
         });
     }
 
+    function get_chat(){
+        $('div#chatcontent').html('');
+        $.getJSON(site_url+'/user/chat/get', function(data) {
+          $.each(data, function(key, val) {
+            $('div#chatcontent').append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+val.username+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+val.msg+'</span></div><div class="chatboxmessage"><span class="chatboxinfo">Sent at '+val.chat_timestamp+'</span></div>');
+            });
+          });
+    }
+
     //On Document Ready
     $(document).ready(function() {
+
+    $('button#chat-refresh').click(function(){
+        get_chat();
+        return false;
+    });
+    if($('form#chatform').html() != undefined){
+        get_chat();
+    }
+
+    $("button#chat-send").click(function(){
+        chatmsg = $('form#chatform input#chatmsg').val();
+        if(chatmsg != ""){
+            var dataString = 'chatmsg='+ chatmsg;  
+            //console.log($('form#chatform input#chatmsg').val());
+            $.ajax({  
+              type: "POST",  
+              url: site_url+"/user/chat",  
+              data: dataString,  
+              success: function(data) {  
+                var response = $.parseJSON(data);
+                if(response.status == "false"){
+                    alert(response.msg);
+                }
+                console.log(data);
+              }  
+            });
+        }
+        else{
+            alert("Form Chat Tidak Boleh Kosong");
+        }
+        get_chat();
+        return false;
+    });
 
     //buat jquery datepicker biasa
     $("#datepicker").datepicker({

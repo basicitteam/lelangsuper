@@ -45,38 +45,19 @@
 					<div id="chatbox_janedoe" class="chatbox" style="bottom: 0px; right: 252px; display: block;box-shadow: 0px -2px 7px #ccc;">
 
 					<div class="chatboxhead chatboxblink" >
-						<div class="chatboxtitle">Tyo</div>
-						<div class="chatboxoptions">
-							<a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth('janedoe')">-</a> 
-							<a href="javascript:void(0)" onclick="javascript:closeChatBox('janedoe')">X</a></div>
-							<br clear="all">
+						<div class="chatboxtitle">Chat</div>
+						<br clear="all">
 					</div>
-						<div class="chatboxcontent">
-							<div class="chatboxmessage">
-								<span class="chatboxmessagefrom">Adit:&nbsp;&nbsp;</span>
-								<span class="chatboxmessagecontent">Gimana lu dah dapet apa aj?</span>
-							</div>
-							<div class="chatboxmessage">
-								<span class="chatboxinfo">Sent at 10:33AM Feb 03rd</span>
-							</div>
-							<div class="chatboxmessage">
-								<span class="chatboxmessagefrom">Roger:&nbsp;&nbsp;</span>
-								<span class="chatboxmessagecontent">udah cuy, lu gmn?</span>
-							</div>
-							<div class="chatboxmessage">
-								<span class="chatboxinfo">Sent at 10:35AM Feb 03rd</span>
-							</div>
-							<div class="chatboxmessage">
-								<span class="chatboxmessagefrom">Tyo:&nbsp;&nbsp;</span>
-								<span class="chatboxmessagecontent">Gw barusan dapet mobil cuy,</span>
-							</div>
-							<div class="chatboxmessage">
-								<span class="chatboxinfo">Sent at 10:40AM Feb 03rd</span>
-							</div>
+						<div id="chatcontent" class="chatboxcontent">
+							
 						</div>
 						<div class="chatboxinput">
-							<textarea class="chatboxtextarea" >
-							</textarea>
+							<form id="chatform">
+							<input type="text" id="chatmsg">
+							<br/>
+							<button class="btn btn-primary" id="chat-send">Send</button>
+							<button class="btn" id="chat-refresh">Refresh</button>
+							</form>
 						</div>
 				</div>
 				

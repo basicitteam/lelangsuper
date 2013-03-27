@@ -36,16 +36,17 @@
 				</div>
 				
 				</div>
+				<?php 
+				if(chat_active()){
+				?>
 				<hr>
 				<div class="row">
 				<!-- Sidebar Hot Chat -->
 				<div class="span3 sidebar">
-					<h4 class="btn btn-warning" style="width:90%;box-shadow: 0px -2px 7px #ccc;">Hot Chat</h4>
-					<hr>
 					<div id="chatbox_janedoe" class="chatbox" style="bottom: 0px; right: 252px; display: block;box-shadow: 0px -2px 7px #ccc;">
 
 					<div class="chatboxhead chatboxblink" >
-						<div class="chatboxtitle">Chat</div>
+						<div class="chatboxtitle">Super Chat</div>
 						<br clear="all">
 					</div>
 						<div id="chatcontent" class="chatboxcontent">
@@ -59,11 +60,13 @@
 							<button class="btn" id="chat-refresh">Refresh</button>
 							</form>
 						</div>
-				</div>
-				
+					</div>
 				</div>
 				<!-- End Span 3 Sidebar Hot Chat -->
 				</div>
+				<?php
+				}; 
+				?>
 				<hr>
 				<div class="row">
 				<!-- Sidebar Wiki Lelang -->

@@ -58,3 +58,13 @@ function is_banned($id_user){
 		return true;
 	}
 }
+
+function chat_active(){
+	$CI =& get_instance();
+	if($CI->M_chat->get_setting() != 1){
+		return false;
+	}
+	else{
+		return true;
+	}	
+}

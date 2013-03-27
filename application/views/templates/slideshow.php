@@ -11,15 +11,15 @@
 				  </p>
 				  <!-- Carousel items --> 
 				  <div class="carousel-inner">
-						<div class="item active"> 				    	
-							<img src="<?php echo base_url('assets/img/1170x300&text=gambar 1.jpg'); ?>"/>
-						</div>
-						<div class="item">
-							<img src="<?php echo base_url('assets/img/1170x300&text=gambar 2.jpg'); ?>"/>
-						</div>
-						<div class="item">
-							<img src="<?php echo base_url('assets/img/1170x300&text=gambar 3.jpg'); ?>"/>						
-						</div>
+				  	<?php
+				  	foreach($slideshow as $key) {
+				  	?>
+				  	<div <?php if($slideshow[0] == $key){ echo 'class="item active"'; }else{ echo 'class="item"'; } ?>> 				    	
+						<img src="<?php echo base_url('assets/uploads/slideshow/'.$key['gambar']); ?>" alt="<?php echo $key['gambar']; ?>"/>
+					</div>
+				  	<?php	
+				  	}
+				  	?>
 				  </div>
 				  <div class="carousel-caption" style="position:absolute; left:70%; right:5.5%; background:rgba(255, 240, 224, 0.75); box-shadow: 5px -8px 10px #ccc;">
 								<h3><a class="btn btn-large btn-block btn-warning" style="background:rgba(255, 153, 0, 0.75);" href="#"><i class="icon-star-empty"></i>  Testimonial</a></h3>

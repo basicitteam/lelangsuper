@@ -6,7 +6,7 @@ Class web extends CI_Controller{
 		$data['recent_lelang'] = $this->M_lelang->get_recent(3);
 		$data['lelang'] = $this->M_lelang->get_upcoming();
 		$data['testimoni'] = $this->M_menang_lelang->get_testimoni(3);
-		//$slide['slide'] = $this->M_lelang->get_imgslide();
+		$data['slideshow'] = $this->M_slideshow->get();
 		$head['nama_user'] = $this->session->userdata('nama_user');
 		$this->load->view('templates/header',$head);
 		$this->load->view('templates/slideshow',$data);

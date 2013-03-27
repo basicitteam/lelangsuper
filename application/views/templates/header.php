@@ -82,6 +82,9 @@
 	.center {
 	text-align: center;
 	}
+	#chatcontent {
+	min-height: 200px;
+	}
     </style>
   </head>
   <body>
